@@ -285,28 +285,39 @@ export function BookingPage({
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
                   <Clock className="w-4 h-4" />
-                  Available Slots
+                  Select Time Slot
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-2 gap-2 max-h-[280px] overflow-y-auto">
-                  {timeSlots.map((slot) => (
-                    <Button
-                      key={slot.time}
-                      variant={selectedTime === slot.time ? 'default' : 'outline'}
-                      className={cn(
-                        'justify-start',
-                        selectedTime === slot.time && 'bg-soft-blue hover:bg-soft-blue/90',
-                        !slot.available && 'opacity-50 cursor-not-allowed'
-                      )}
-                      disabled={!slot.available}
-                      onClick={() => handleTimeSelect(slot.time)}
-                    >
-                      <span className="flex-1 text-left">{slot.label}</span>
-                      {!slot.available && <Badge variant="secondary" className="text-[10px]">Taken</Badge>}
-                    </Button>
-                  ))}
-                </div>
+                <Select value={selectedTime} onValueChange={handleTimeSelect}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Choose a time slot" />
+                  </SelectTrigger>
+                  <SelectContent className="max-h-[280px]">
+                    {timeSlots.map((slot) => (
+                      <SelectItem
+                        key={slot.time}
+                        value={slot.time}
+                        disabled={!slot.available}
+                        className={cn(
+                          !slot.available && 'opacity-50 cursor-not-allowed'
+                        )}
+                      >
+                        <span className="flex items-center justify-between w-full gap-4">
+                          <span>{slot.label}</span>
+                          {!slot.available && <Badge variant="secondary" className="text-[10px]">Booked</Badge>}
+                        </span>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {selectedTime && (
+                  <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+                    <p className="text-sm text-blue-700">
+                      Selected: <span className="font-medium">{selectedTime}</span>
+                    </p>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>

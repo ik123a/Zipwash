@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import { authService } from '../services/api';
 
 const AuthContext = createContext(null);
@@ -21,20 +21,40 @@ export const AuthProvider = ({ children }) => {
     return data;
   };
 
+  const loginAdmin = async (username, password) => {
+    const data = await authService.loginAdmin(username, password);
+    setUser(data.user);
+    return data;
+  };
+
   const logout = () => {
     authService.logout();
     setUser(null);
+    window.location.href = '/login';
   };
 
   if (loading) {
-    return <div>Loading...</div>; // Could be a better spinner
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="flex items-center gap-3">
+          <div className="h-8 w-8 rounded-lg bg-blue-600 animate-pulse" />
+          <span className="text-lg font-semibold text-slate-700">Loading ZIPPWASH...</span>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <AuthContext.Provider value={{ user, loginStudent, logout }}>
+    <AuthContext.Provider value={{ user, setUser, loginStudent, loginAdmin, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const context = React.useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};

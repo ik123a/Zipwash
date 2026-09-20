@@ -54,6 +54,7 @@ export const currentUser: User = {
   hostelId: 'h1',
   roomNumber: 'A-204',
   isAdmin: false,
+  role: 'student',
 };
 
 export const mockBookings: Booking[] = [

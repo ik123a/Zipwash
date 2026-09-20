@@ -39,6 +39,8 @@ export interface User {
   hostelId: string;
   roomNumber: string;
   isAdmin: boolean;
+  role: 'student' | 'staff';
+  roll_number?: string;
 }
 
 export interface Notification {

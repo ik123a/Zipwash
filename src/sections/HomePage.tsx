@@ -60,22 +60,22 @@ export function HomePage({
   const selectedHostelData = hostels.find(h => h.id === selectedHostel);
 
   return (
-    <div className="space-y-6 pb-20 md:pb-0">
+    <div className="space-y-8 pb-20 md:pb-0 animate-fade-up">
       {/* Header Section */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Live Status</h2>
-          <p className="text-gray-500 flex items-center gap-1 mt-1">
+          <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Live Status</h2>
+          <p className="text-slate-500 flex items-center gap-2 mt-2 text-sm">
             <Clock className="w-4 h-4" />
             {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-            <span className="mx-2">•</span>
+            <span className="mx-2 text-slate-300">•</span>
             <MapPin className="w-4 h-4" />
             {selectedHostelData?.name}
           </p>
         </div>
         <div className="flex items-center gap-2">
           <Select value={selectedHostel} onValueChange={onHostelChange}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[200px] bg-white shadow-sm border-slate-200 hover:border-slate-300 transition-colors">
               <SelectValue placeholder="Select Hostel" />
             </SelectTrigger>
             <SelectContent>
@@ -86,134 +86,141 @@ export function HomePage({
               ))}
             </SelectContent>
           </Select>
-          <Button variant="outline" size="icon" onClick={handleRefresh} disabled={isRefreshing}>
-            <RefreshCw className={cn('w-4 h-4', isRefreshing && 'animate-spin')} />
+          <Button variant="outline" size="icon" onClick={handleRefresh} disabled={isRefreshing} className="hover:bg-slate-50 shadow-sm">
+            <RefreshCw className={cn('w-4 h-4 text-slate-600', isRefreshing && 'animate-spin')} />
           </Button>
         </div>
       </div>
 
-      {/* Stats Overview */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-        <Card className="bg-green-50 border-green-100">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
-                <CheckCircle2 className="w-5 h-5 text-green-600" />
+      {/* Stats Overview - Modern Glass Cards */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <Card className="group bg-gradient-to-br from-emerald-50/80 to-emerald-100/60 border-emerald-200/50 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-default overflow-hidden relative">
+          <CardContent className="p-5">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-500 shadow-lg shadow-emerald-200 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <CheckCircle2 className="w-6 h-6 text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-green-700">{availableMachines.length}</p>
-                <p className="text-sm text-green-600">Available</p>
+                <p className="text-3xl font-bold text-emerald-700">{availableMachines.length}</p>
+                <p className="text-sm text-emerald-600 font-medium">Available</p>
               </div>
             </div>
           </CardContent>
+          <div className="absolute top-0 right-0 w-20 h-20 bg-emerald-400/10 rounded-full -translate-y-1/2 translate-x-1/2" />
         </Card>
 
-        <Card className="bg-red-50 border-red-100">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
-                <Timer className="w-5 h-5 text-red-600" />
+        <Card className="group bg-gradient-to-br from-rose-50/80 to-rose-100/60 border-rose-200/50 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-default overflow-hidden relative">
+          <CardContent className="p-5">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-rose-400 to-rose-500 shadow-lg shadow-rose-200 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <Timer className="w-6 h-6 text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-red-700">{busyMachines.length}</p>
-                <p className="text-sm text-red-600">In Use</p>
+                <p className="text-3xl font-bold text-rose-700">{busyMachines.length}</p>
+                <p className="text-sm text-rose-600 font-medium">In Use</p>
               </div>
             </div>
           </CardContent>
+          <div className="absolute top-0 right-0 w-20 h-20 bg-rose-400/10 rounded-full -translate-y-1/2 translate-x-1/2" />
         </Card>
 
-        <Card className="bg-amber-50 border-amber-100">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center">
-                <AlertCircle className="w-5 h-5 text-amber-600" />
+        <Card className="group bg-gradient-to-br from-amber-50/80 to-amber-100/60 border-amber-200/50 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-default overflow-hidden relative">
+          <CardContent className="p-5">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-amber-500 shadow-lg shadow-amber-200 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <AlertCircle className="w-6 h-6 text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-amber-700">{reservedMachines.length}</p>
-                <p className="text-sm text-amber-600">Reserved</p>
+                <p className="text-3xl font-bold text-amber-700">{reservedMachines.length}</p>
+                <p className="text-sm text-amber-600 font-medium">Reserved</p>
               </div>
             </div>
           </CardContent>
+          <div className="absolute top-0 right-0 w-20 h-20 bg-amber-400/10 rounded-full -translate-y-1/2 translate-x-1/2" />
         </Card>
 
-        <Card className="bg-blue-50 border-blue-100">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
-                <TrendingUp className="w-5 h-5 text-blue-600" />
+        <Card className="group bg-gradient-to-br from-sky-50/80 to-sky-100/60 border-sky-200/50 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-default overflow-hidden relative">
+          <CardContent className="p-5">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-400 to-sky-500 shadow-lg shadow-sky-200 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <TrendingUp className="w-6 h-6 text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-blue-700">{hostelMachines.length}</p>
-                <p className="text-sm text-blue-600">Total</p>
+                <p className="text-3xl font-bold text-sky-700">{hostelMachines.length}</p>
+                <p className="text-sm text-sky-600 font-medium">Total</p>
               </div>
             </div>
           </CardContent>
+          <div className="absolute top-0 right-0 w-20 h-20 bg-sky-400/10 rounded-full -translate-y-1/2 translate-x-1/2" />
         </Card>
       </div>
 
       {/* Next Available Alert */}
       {availableCount === 0 && nextAvailableTime > 0 && (
-        <Card className="bg-gradient-to-r from-blue-500 to-blue-600 text-white border-0">
-          <CardContent className="p-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                <Clock className="w-5 h-5" />
+        <Card className="bg-gradient-to-r from-sky-500 to-sky-600 text-white border-0 shadow-lg shadow-sky-200 animate-fade-up overflow-hidden relative">
+          <CardContent className="p-5 flex items-center justify-between relative z-10">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center shadow-inner">
+                <Clock className="w-6 h-6" />
               </div>
               <div>
-                <p className="font-semibold">Next Machine Free In</p>
-                <p className="text-blue-100">Approximately {nextAvailableTime} minutes</p>
+                <p className="font-semibold text-lg">Next Machine Free In</p>
+                <p className="text-sky-100 text-sm">Approximately {nextAvailableTime} minutes</p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-3xl font-bold">{nextAvailableTime}</p>
-              <p className="text-sm text-blue-100">min</p>
+              <p className="text-4xl font-bold">{nextAvailableTime}</p>
+              <p className="text-sm text-sky-100 font-medium">min</p>
             </div>
           </CardContent>
+          <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl" />
         </Card>
       )}
 
       {/* All Clear Message */}
       {availableCount > 0 && availableCount >= hostelMachines.length / 2 && (
-        <Card className="bg-gradient-to-r from-green-500 to-green-600 text-white border-0">
-          <CardContent className="p-4 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-              <CheckCircle2 className="w-5 h-5" />
+        <Card className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white border-0 shadow-lg shadow-emerald-200 animate-fade-up overflow-hidden relative">
+          <CardContent className="p-5 flex items-center gap-4 relative z-10">
+            <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center shadow-inner">
+              <CheckCircle2 className="w-6 h-6" />
             </div>
-            <div>
-              <p className="font-semibold">Great timing! {availableCount} machines available</p>
-              <p className="text-green-100">Book your slot now and skip the wait</p>
+            <div className="flex-1">
+              <p className="font-semibold text-lg">Great timing! {availableCount} machines available</p>
+              <p className="text-emerald-100 text-sm">Book your slot now and skip the wait</p>
             </div>
           </CardContent>
+          <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
         </Card>
       )}
 
       {/* Machines Grid */}
       <div>
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold">Washing Machines</h3>
+        <div className="flex items-center justify-between mb-5">
+          <h3 className="text-xl font-semibold text-slate-900">Washing Machines</h3>
           <div className="flex items-center gap-4 text-sm">
-            <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-green-500" />
+            <span className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 font-medium border border-emerald-100">
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
               Available
             </span>
-            <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
+            <span className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-50 text-rose-700 font-medium border border-rose-100">
+              <span className="w-2 h-2 rounded-full bg-rose-500" />
               Busy
             </span>
-            <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+            <span className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50 text-amber-700 font-medium border border-amber-100">
+              <span className="w-2 h-2 rounded-full bg-amber-500" />
               Reserved
             </span>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {hostelMachines.map(machine => (
-            <MachineCard
-              key={machine.id}
-              machine={machine}
-              onBook={onBookMachine}
-            />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {hostelMachines.map((machine, index) => (
+            <div key={machine.id} className="animate-fade-up" style={{ animationDelay: `${index * 0.05}s` }}>
+              <MachineCard
+                machine={machine}
+                onBook={onBookMachine}
+              />
+            </div>
           ))}
         </div>
       </div>

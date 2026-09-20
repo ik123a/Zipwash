@@ -8,6 +8,9 @@ const authenticateToken = (req, res, next) => {
 
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) return res.sendStatus(403);
+    if (!user || !user.id || !user.role) {
+      return res.status(403).json({ message: 'Invalid token payload', code: 'INVALID_PAYLOAD' });
+    }
     req.user = user;
     next();
   });

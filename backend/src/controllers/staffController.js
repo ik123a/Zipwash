@@ -11,7 +11,7 @@ const getAllSubmissions = async (req, res) => {
         res.json(rows);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: 'Server error', code: 'SERVER_ERROR' });
     }
 };
 
@@ -36,7 +36,7 @@ const updateStatus = async (req, res) => {
         res.json({ message: 'Status updated successfully' });
     } catch (error) {
          console.error(error);
-         res.status(500).json({ message: 'Server error' });
+         res.status(500).json({ message: 'Server error', code: 'SERVER_ERROR' });
     }
 };
 
@@ -46,7 +46,7 @@ const getMachines = async (req, res) => {
         res.json(rows);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: 'Server error', code: 'SERVER_ERROR' });
     }
 };
 
@@ -55,7 +55,7 @@ const updateMachineStatus = async (req, res) => {
          const { id } = req.params;
          const { status } = req.body;
 
-         const validStatuses = ['available', 'busy', 'reserved', 'offline'];
+         const validStatuses = ['available', 'busy', 'reserved', 'offline', 'maintenance'];
          if (!validStatuses.includes(status)) {
               return res.status(400).json({ message: 'Invalid machine status' });
          }
@@ -64,7 +64,7 @@ const updateMachineStatus = async (req, res) => {
          res.json({ message: 'Machine status updated' });
     } catch(error) {
          console.error(error);
-         res.status(500).json({ message: 'Server error' });
+         res.status(500).json({ message: 'Server error', code: 'SERVER_ERROR' });
     }
 }
 

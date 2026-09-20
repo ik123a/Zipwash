@@ -7,6 +7,7 @@ router.use(authenticateToken); // Protect all student routes
 
 router.post('/laundry', studentController.submitLaundry);
 router.get('/laundry', studentController.getHistory);
+router.put('/profile', studentController.updateProfile);
 // Need to add slot booking
 
 module.exports = router;

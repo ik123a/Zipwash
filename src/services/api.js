@@ -24,14 +24,27 @@ export const authService = {
     return response.data;
   },
   
-  loginStaff: async (username, password) => {
-    // Implement when staff login API is ready. For now, simulate.
-    const response = await api.post('/auth/staff/login', { username, password });
+  loginAdmin: async (username, password) => {
+    const response = await api.post('/auth/staff/login', { email: username, password });
+    if (response.data.token) {
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+    }
     return response.data;
   },
 
   registerStudent: async (name, roll_number, phone_number, password) => {
     const response = await api.post('/auth/student/register', { name, roll_number, phone_number, password });
+    return response.data;
+  },
+  
+  updateProfile: async (name, phone_number, password) => {
+    const response = await api.put('/student/profile', { name, phone_number, password });
+    if (response.data.message === 'Profile updated successfully') {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const newUser = { ...user, name };
+        localStorage.setItem('user', JSON.stringify(newUser));
+    }
     return response.data;
   },
 
@@ -47,4 +60,21 @@ export const authService = {
   }
 };
 
+export const slotService = {
+  getBookedSlots: async (date, machine_id = null) => {
+    const url = machine_id ? `/slots?date=${date}&machine_id=${machine_id}` : `/slots?date=${date}`;
+    const response = await api.get(url);
+    if (machine_id) {
+      return response.data.booked_slots || [];
+    }
+    return response.data.bookings || [];
+  },
+
+  bookSlot: async (date, time, machine_id = null) => {
+    const response = await api.post('/slots', { date, time, machine_id });
+    return response.data;
+  },
+};
+
 export default api;
+
