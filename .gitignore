@@ -136,3 +136,6 @@ local.properties
 *.rar
 .pytest_cache/
 .turbo/
+
+# Unrelated third-party file accidentally committed in the past
+782330.lua
