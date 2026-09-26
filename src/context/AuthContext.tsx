@@ -1,10 +1,21 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
+import type { ReactNode } from 'react';
 import { authService } from '../services/api';
+import type { User } from '../types';
 
-const AuthContext = createContext(null);
+export interface AuthContextValue {
+  user: User | null;
+  setUser: (user: User | null) => void;
+  loginStudent: (rollNumber: string, password: string) => Promise<{ user: User }>;
+  loginAdmin: (username: string, password: string) => Promise<{ user: User }>;
+  logout: () => void;
+  loading: boolean;
+}
 
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+const AuthContext = createContext<AuthContextValue | null>(null);
+
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -15,13 +26,13 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  const loginStudent = async (roll_number, password) => {
+  const loginStudent = async (roll_number: string, password: string) => {
     const data = await authService.loginStudent(roll_number, password);
     setUser(data.user);
     return data;
   };
 
-  const loginAdmin = async (username, password) => {
+  const loginAdmin = async (username: string, password: string) => {
     const data = await authService.loginAdmin(username, password);
     setUser(data.user);
     return data;
@@ -51,8 +62,8 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => {
-  const context = React.useContext(AuthContext);
+export const useAuth = (): AuthContextValue => {
+  const context = useContext(AuthContext);
   if (!context) {
     throw new Error('useAuth must be used within an AuthProvider');
   }

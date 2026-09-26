@@ -47,7 +47,7 @@ export const authService = {
   },
 
   loginAdmin: async (username: string, password: string) => {
-    const { data } = await api.post('/auth/staff/login', { username, password });
+    const { data } = await api.post('/auth/staff/login', { email: username, password });
     if (data.token) {
       localStorage.setItem('auth_token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));

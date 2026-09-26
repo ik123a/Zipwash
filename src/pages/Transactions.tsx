@@ -17,14 +17,6 @@ interface Transaction {
   number_of_clothes?: number;
 }
 
-const MOCK_TRANSACTIONS = [
-  { id: "ZW-10294", date: "2026-04-06", items: "1 Suit, 1 Bedspread", amount: 570, status: "Drying", method: "Prepaid" },
-  { id: "ZW-10293", date: "2026-04-07", items: "5 Shirts, 2 Trousers", amount: 400, status: "Washing", method: "UPI" },
-  { id: "ZW-10145", date: "2026-03-28", items: "3 T-Shirts", amount: 150, status: "Completed", method: "Cash" },
-  { id: "ZW-10112", date: "2026-03-20", items: "2 Blankets, 1 Rug", amount: 900, status: "Completed", method: "Card" },
-  { id: "ZW-09982", date: "2026-03-12", items: "1 Silk Saree", amount: 350, status: "Completed", method: "Prepaid" }
-];
-
 const statusConfig: Record<string, string> = {
   Completed: "bg-green-100 text-green-700 border-green-200",
   submitted: "bg-slate-100 text-slate-700 border-slate-200",

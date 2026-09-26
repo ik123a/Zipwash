@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { SidebarTrigger } from '@/components/ui/sidebar';
-import { LogOut, ShoppingBag, User, ChevronDown } from 'lucide-react';
+import { LogOut, ShoppingBag, User } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -51,7 +51,7 @@ export function Navbar() {
             <DropdownMenuLabel className="font-semibold">
               <div className="flex flex-col">
                 <span className="text-slate-900">{user?.name}</span>
-                <span className="text-xs font-normal text-slate-500 mt-0.5">{user?.email || user?.rollNumber}</span>
+                <span className="text-xs font-normal text-slate-500 mt-0.5">{user?.email || user?.roll_number}</span>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
