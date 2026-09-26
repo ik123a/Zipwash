@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { isAxiosError } from 'axios';
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -50,8 +51,8 @@ export function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
       setComments('');
       setCategory('service');
       onClose(false);
-    } catch (error: any) {
-      const message = error.response?.data?.message || 'Failed to submit feedback';
+    } catch (error) {
+      const message = (isAxiosError<{ message?: string }>(error) ? error.response?.data?.message : undefined) || 'Failed to submit feedback';
       toast.error(message);
       console.error('Feedback submission error:', error);
     } finally {

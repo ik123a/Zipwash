@@ -13,7 +13,16 @@ interface Order {
   progress?: number;
 }
 
-const MOCK_ORDERS = [
+interface TrackedOrderView {
+  id: string;
+  status: string;
+  items: string;
+  placedAt: string;
+  expectedBy: string;
+  progress: number;
+}
+
+const MOCK_ORDERS: TrackedOrderView[] = [
   { id: "ZW-10293", status: "washing", items: "5 Shirts, 2 Trousers", placedAt: "2026-04-07 10:30 AM", expectedBy: "2026-04-08 05:00 PM", progress: 45 },
   { id: "ZW-10294", status: "drying", items: "1 Suit, 1 Bedspread", placedAt: "2026-04-06 02:15 PM", expectedBy: "2026-04-07 08:00 PM", progress: 80 },
 ];
@@ -70,12 +79,13 @@ export default function TrackLaundry() {
     }
   };
 
-  const activeOrders = showMock
-    ? (orders as any[])
+  const activeOrders: TrackedOrderView[] = showMock
+    ? MOCK_ORDERS
     : orders
         .filter((o) => o.status !== "delivered")
         .map((o) => ({
           ...o,
+          id: String(o.id),
           items: `${o.number_of_clothes} item(s)`,
           placedAt: new Date(o.submission_time).toLocaleString(),
           expectedBy: "Check back for updates",
@@ -125,7 +135,7 @@ export default function TrackLaundry() {
         </div>
       ) : (
         <div className="grid gap-6">
-          {filtered.map((order: any) => (
+          {filtered.map((order) => (
             <Card key={order.id} className="overflow-hidden border-border bg-card shadow-sm hover:shadow-md transition-shadow">
               <CardHeader className="border-b bg-slate-100/30 py-4">
                 <div className="flex items-center justify-between">

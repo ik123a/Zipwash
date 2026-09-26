@@ -1,4 +1,15 @@
 import * as React from 'react';
+
+interface StaffLaundryRow {
+  id: number | string;
+  student_name?: string;
+  roll_number?: string;
+  number_of_clothes: number;
+  submission_time: string;
+  status: Order['status'];
+  phone?: string;
+  hostel?: string;
+}
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
@@ -131,7 +142,7 @@ export default function OrdersPage() {
       // Try to fetch from API first
       const response = await api.get('/staff/laundry');
       if (response.data && response.data.length > 0) {
-        const apiOrders = response.data.map((item: any) => ({
+        const apiOrders = (response.data as StaffLaundryRow[]).map((item) => ({
           id: `ORD-${String(item.id).padStart(3, '0')}`,
           customerName: item.student_name || 'Unknown',
           rollNumber: item.roll_number || '-',

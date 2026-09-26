@@ -1,4 +1,12 @@
 import { useEffect, useState } from 'react';
+
+interface StudentLaundryRow {
+  id: number | string;
+  submission_time: string;
+  number_of_clothes?: number;
+  total_amount?: number;
+  status: string;
+}
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -43,7 +51,7 @@ export default function Transactions() {
       setLoading(true);
       setError(null);
       const res = await api.get('/student/laundry');
-      const mapped = res.data.map((item: any) => ({
+      const mapped = (res.data as StudentLaundryRow[]).map((item) => ({
         id: item.id,
         date: new Date(item.submission_time).toLocaleDateString(),
         items: `${item.number_of_clothes || 1} item(s)`,
