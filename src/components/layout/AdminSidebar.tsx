@@ -25,7 +25,7 @@ export function AdminSidebar() {
   const { logout } = useAuth();
 
   return (
-    <div className="w-[100px] h-screen bg-white shadow-[2px_0_15px_-3px_rgba(0,0,0,0.05)] border-r border-slate-100 flex flex-col items-center py-6 fixed left-0 top-0 z-50">
+    <div className="w-[100px] h-screen bg-white shadow-[2px_0_15px_-3px_rgba(0,0,0,0.05)] border-r border-border flex flex-col items-center py-6 fixed left-0 top-0 z-50">
       
       {/* Top Logo */}
       <div className="mb-8">
@@ -44,7 +44,7 @@ export function AdminSidebar() {
               "flex flex-col items-center justify-center py-4 rounded-xl transition-all w-full",
               isActive || item.active
                 ? "bg-[#345381] text-white shadow-md"
-                : "text-slate-400 hover:text-slate-600 hover:bg-slate-50"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted"
             )}
           >
             <item.icon className="w-5 h-5 mb-1.5 stroke-[2]" />
