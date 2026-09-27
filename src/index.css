@@ -29,6 +29,11 @@
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
 
+    /* Mid-tones between --foreground and --muted-foreground. Theme-aware, so
+       `text-slate-800 dark:text-slate-200` pairs collapse to one class. */
+    --text-strong: 217 33% 12%;
+    --text-moderate: 215 19% 28%;
+
     /* Destructive: Clean Red */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -49,6 +54,20 @@
     --warning: 38 92% 50%;
     --error: 0 72% 51%;
     --info: 199 89% 48%;
+
+    /* Subtle surfaces: low-lightness tints for use behind the semantic colors */
+    --success-surface: 152 76% 95%;
+    --warning-surface: 48 96% 94%;
+    --error-surface: 0 86% 95%;
+    --info-surface: 199 90% 94%;
+
+    /* Readable text on the page background and on the surfaces above.
+       The base --success/--warning/--info values are fill colors and fall
+       below 4.5:1 as text on a light background, so text needs its own step. */
+    --success-foreground: 160 84% 27.5%;
+    --warning-foreground: 38 92% 31.5%;
+    --error-foreground: 0 72% 47.5%;
+    --info-foreground: 199 89% 34.5%;
 
     /* Sidebar */
     --sidebar-background: 0 0% 100%;
@@ -86,6 +105,22 @@
     --busy: 0 72% 55%;
     --reserved: 38 92% 55%;
     --offline: 215 20% 55%;
+
+    /* Subtle surfaces: same hues as :root, desaturated and darkened */
+    --success-surface: 160 38% 13%;
+    --warning-surface: 38 42% 14%;
+    --error-surface: 0 42% 15%;
+    --info-surface: 199 42% 14%;
+
+    /* Dark surfaces are light-on-dark, so the base values already read as
+       text; only --error needed lifting to clear 4.5:1 on the dark surface. */
+    --success-foreground: 160 84% 45%;
+    --warning-foreground: 38 92% 55%;
+    --error-foreground: 0 72% 62%;
+    --info-foreground: 199 89% 48%;
+
+    --text-strong: 214 32% 91%;
+    --text-moderate: 215 25% 83%;
 
     --sidebar-background: 222 47% 6%;
     --sidebar-foreground: 210 40% 98%;
