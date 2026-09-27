@@ -40,7 +40,7 @@ export default function Reminders() {
           <Button
             variant="outline"
             size="sm"
-            className="text-xs font-bold border-red-100 text-red-600 hover:bg-red-50 hover:text-red-700 h-9"
+            className="text-xs font-bold border-red-100 text-error-foreground hover:bg-error-surface hover:text-error-foreground h-9"
             onClick={clearAll}
           >
             <Trash2 className="h-3.5 w-3.5 mr-2" /> Clear All
@@ -54,7 +54,7 @@ export default function Reminders() {
             <CardContent className="p-6">
               <div className="flex gap-4">
                 <div className={`h-12 w-12 rounded-2xl flex items-center justify-center shrink-0 ${
-                  r.type === 'ready' ? 'bg-green-100 text-green-600' :
+                  r.type === 'ready' ? 'bg-success-surface text-success-foreground' :
                   r.type === 'promo' ? 'bg-primary/10 text-primary' :
                   'bg-muted text-muted-foreground'
                 }`}>
@@ -67,7 +67,7 @@ export default function Reminders() {
                   <div className="flex items-center justify-between mb-1">
                     <h3 className="text-base font-bold text-foreground flex items-center gap-2">
                       {r.title}
-                      {r.urgent && <div className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />}
+                      {r.urgent && <div className="h-1.5 w-1.5 rounded-full bg-warning animate-pulse" />}
                     </h3>
                     <span className="text-[10px] font-bold text-muted-foreground uppercase flex items-center gap-1">
                       <Clock className="h-3 w-3" /> {r.time}
@@ -80,7 +80,7 @@ export default function Reminders() {
                     </Button>
                     <Button
                       variant="link"
-                      className="p-0 h-auto text-xs font-bold text-muted-foreground hover:text-red-600 hover:no-underline"
+                      className="p-0 h-auto text-xs font-bold text-muted-foreground hover:text-error-foreground hover:no-underline"
                       onClick={() => deleteReminder(r.id)}
                     >
                       Remove

@@ -231,7 +231,7 @@ export function SubmitLaundry({ onSuccess, onClose, initialMachineId = null }) {
               Pick time, machine, and add laundry
             </p>
           </div>
-          <button onClick={onClose} className="p-2 hover:bg-white/5 rounded-full transition-colors text-white/40 hover:text-white">
+          <button onClick={onClose} className="p-2 hover:bg-card/5 rounded-full transition-colors text-white/40 hover:text-white">
             <Plus size={24} className="rotate-45" />
           </button>
         </div>
@@ -299,7 +299,7 @@ export function SubmitLaundry({ onSuccess, onClose, initialMachineId = null }) {
               padding: '12px 16px', borderRadius: 12, background: 'rgba(99,102,241,0.1)', 
               border: '1px solid rgba(99,102,241,0.2)', display: 'flex', alignItems: 'center', gap: 12
             }}>
-              <Info size={16} className="text-indigo-400" />
+              <Info size={16} className="text-info-foreground" />
               <div>
                 <p style={{ color: '#a5b4fc', fontSize: 13, fontWeight: 600 }}>
                   Reserving {selectedMachine.machine_number} at {formatSlot(selectedTime)}

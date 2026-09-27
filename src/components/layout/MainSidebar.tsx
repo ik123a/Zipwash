@@ -309,9 +309,9 @@ export function MainSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) 
         <div className="flex items-center justify-between px-2 py-3 bg-sidebar-accent/50 rounded-xl border border-sidebar-border shadow-sm">
           <div className="flex items-center gap-2">
             {isDark ? (
-              <Moon className="h-4 w-4 text-blue-400" />
+              <Moon className="h-4 w-4 text-info-foreground" />
             ) : (
-              <Sun className="h-4 w-4 text-amber-500" />
+              <Sun className="h-4 w-4 text-warning-foreground" />
             )}
             <span className="text-sm font-medium text-sidebar-foreground">Dark Mode</span>
           </div>

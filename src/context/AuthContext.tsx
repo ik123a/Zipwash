@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-muted">
         <div className="flex items-center gap-3">
-          <div className="h-8 w-8 rounded-lg bg-blue-600 animate-pulse" />
+          <div className="h-8 w-8 rounded-lg bg-info animate-pulse" />
           <span className="text-lg font-semibold text-foreground">Loading ZIPPWASH...</span>
         </div>
       </div>
