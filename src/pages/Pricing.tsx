@@ -140,15 +140,15 @@ export default function Pricing() {
   const categories = ['All', 'Laundry', 'Dry Wash', 'Ironing'] as const;
 
   return (
-    <div className="flex h-full flex-col lg:flex-row gap-6 animate-fade-up w-full overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="flex h-full flex-col lg:flex-row gap-6 animate-fade-up w-full overflow-hidden bg-gradient-to-br from-muted to-muted">
       {/* Main Grid Area */}
       <div className="flex-1 flex flex-col gap-6 min-w-0">
         <header className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-extrabold tracking-tight text-foreground bg-gradient-to-r from-info to-info bg-clip-text text-transparent">
               Pricing & Services
             </h1>
-            <p className="text-slate-500 mt-1">View and manage laundry service pricing</p>
+            <p className="text-muted-foreground mt-1">View and manage laundry service pricing</p>
           </div>
 
           {/* Edit Mode Toggle (Staff Only) */}
@@ -169,7 +169,7 @@ export default function Pricing() {
                     size="sm"
                     onClick={handleSavePrices}
                     disabled={!hasChanges}
-                    className="bg-emerald-600 hover:bg-emerald-700"
+                    className="bg-success hover:bg-success"
                   >
                     <Save className="h-4 w-4 mr-2" />
                     Save Changes
@@ -180,7 +180,7 @@ export default function Pricing() {
                   variant="outline"
                   size="sm"
                   onClick={() => setIsEditMode(true)}
-                  className="border-blue-300 text-blue-700 hover:bg-blue-50"
+                  className="border-info text-info-foreground hover:bg-info-surface"
                 >
                   <Edit3 className="h-4 w-4 mr-2" />
                   Edit Prices
@@ -190,10 +190,10 @@ export default function Pricing() {
           )}
 
           <div className="relative w-full md:w-72">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               placeholder="Search items..."
-              className="pl-9 h-11 bg-white border-slate-200 rounded-xl shadow-sm focus:ring-primary hover:border-blue-300 transition-colors"
+              className="pl-9 h-11 bg-card border-border rounded-xl shadow-sm focus:ring-primary hover:border-info transition-colors"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -209,7 +209,7 @@ export default function Pricing() {
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                 activeTab === category
                   ? 'bg-slate-900 text-white shadow-md'
-                  : 'bg-white text-slate-600 border border-slate-200 hover:border-blue-300 hover:text-blue-600'
+                  : 'bg-white text-text-moderate border border-border hover:border-info hover:text-blue-600'
               }`}
             >
               {category}
@@ -219,16 +219,16 @@ export default function Pricing() {
 
         {/* Edit Mode Banner */}
         {isEditMode && (
-          <div className="p-4 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-between">
+          <div className="p-4 rounded-xl bg-info-surface border border-info flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Edit3 className="h-5 w-5 text-blue-600" />
+              <Edit3 className="h-5 w-5 text-info-foreground" />
               <div>
-                <p className="font-medium text-blue-900">Edit Mode Active</p>
-                <p className="text-sm text-blue-600">Click on any price to edit it. Changes will be saved when you click Save.</p>
+                <p className="font-medium text-info-foreground">Edit Mode Active</p>
+                <p className="text-sm text-info-foreground">Click on any price to edit it. Changes will be saved when you click Save.</p>
               </div>
             </div>
             {hasChanges && (
-              <Badge variant="outline" className="bg-amber-100 text-amber-700 border-amber-200">
+              <Badge variant="outline" className="bg-warning-surface text-warning-foreground border-warning">
                 Unsaved Changes
               </Badge>
             )}
@@ -245,23 +245,23 @@ export default function Pricing() {
                 <div
                   key={item.id}
                   onClick={() => !isEditMode && addToCart(item)}
-                  className={`group relative flex flex-col items-center justify-center aspect-square p-2 bg-white border border-slate-200 rounded-2xl transition-all duration-300 shadow-sm ${
+                  className={`group relative flex flex-col items-center justify-center aspect-square p-2 bg-card border border-border rounded-2xl transition-all duration-300 shadow-sm ${
                     isEditMode
                       ? ''
                       : 'hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:shadow-lg active:scale-95 cursor-pointer'
                   }`}
                 >
-                  <div className="h-12 w-12 rounded-xl bg-slate-100 group-hover:bg-blue-100 flex items-center justify-center mb-3 transition-colors">
-                    <item.icon className="h-6 w-6 text-slate-500 group-hover:text-blue-600 transition-colors" />
+                  <div className="h-12 w-12 rounded-xl bg-muted group-hover:bg-blue-100 flex items-center justify-center mb-3 transition-colors">
+                    <item.icon className="h-6 w-6 text-muted-foreground group-hover:text-blue-600 transition-colors" />
                   </div>
-                  <span className="text-xs font-bold text-center text-slate-900 group-hover:text-blue-700 transition-colors px-1 whitespace-nowrap overflow-hidden text-ellipsis w-full">
+                  <span className="text-xs font-bold text-center text-foreground group-hover:text-blue-700 transition-colors px-1 whitespace-nowrap overflow-hidden text-ellipsis w-full">
                     {item.name}
                   </span>
 
                   {/* Price Display / Edit */}
                   {isEditMode ? (
                     <div className="flex items-center gap-1 mt-2">
-                      <IndianRupee className="h-3 w-3 text-slate-500" />
+                      <IndianRupee className="h-3 w-3 text-muted-foreground" />
                       <Input
                         type="number"
                         value={currentPrice}
@@ -272,26 +272,26 @@ export default function Pricing() {
                         onClick={(e) => e.stopPropagation()}
                       />
                       {isEdited && (
-                        <span className="absolute -top-1 -right-1 h-4 w-4 bg-emerald-500 rounded-full flex items-center justify-center">
+                        <span className="absolute -top-1 -right-1 h-4 w-4 bg-success rounded-full flex items-center justify-center">
                           <span className="text-[8px] text-white">✓</span>
                         </span>
                       )}
                     </div>
                   ) : (
-                    <span className={`text-[10px] font-black text-slate-500 mt-1 uppercase tracking-tighter opacity-60 group-hover:opacity-100 transition-opacity ${isEdited ? 'text-emerald-600' : ''}`}>
+                    <span className={`text-[10px] font-black text-muted-foreground mt-1 uppercase tracking-tighter opacity-60 group-hover:opacity-100 transition-opacity ${isEdited ? 'text-success-foreground' : ''}`}>
                       ₹{currentPrice}
                     </span>
                   )}
 
                   {/* Category Badge - Hidden in edit mode to save space */}
                   {!isEditMode && (
-                    <span className="absolute top-2 right-2 text-[8px] px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-500">
+                    <span className="absolute top-2 right-2 text-[8px] px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground">
                       {item.category}
                     </span>
                   )}
 
                   {cart.find(i => i.id === item.id) && !isEditMode && (
-                    <div className="absolute -top-1 -right-1 h-5 w-5 bg-gradient-to-br from-blue-500 to-indigo-600 text-white rounded-full text-[10px] font-bold flex items-center justify-center shadow-md animate-fade-up">
+                    <div className="absolute -top-1 -right-1 h-5 w-5 bg-gradient-to-br from-info to-info text-white rounded-full text-[10px] font-bold flex items-center justify-center shadow-md animate-fade-up">
                       {cart.find(i => i.id === item.id)?.qty}
                     </div>
                   )}
@@ -301,8 +301,8 @@ export default function Pricing() {
           </div>
 
           {filteredItems.length === 0 && (
-            <div className="flex flex-col items-center justify-center py-20 bg-white rounded-2xl border border-dashed border-slate-200">
-              <p className="text-slate-500 text-sm">No items found matching your filter.</p>
+            <div className="flex flex-col items-center justify-center py-20 bg-card rounded-2xl border border-dashed border-border">
+              <p className="text-muted-foreground text-sm">No items found matching your filter.</p>
             </div>
           )}
         </div>
@@ -310,8 +310,8 @@ export default function Pricing() {
       </div>
 
       {/* Right Sidebar - Order Summary */}
-      <Card className="w-full lg:w-[380px] bg-white/90 backdrop-blur-sm border-l border-slate-200 rounded-none lg:rounded-l-3xl shadow-2xl flex flex-col shrink-0 animate-fade-up">
-        <CardHeader className="bg-gradient-to-r from-slate-100 to-slate-50 border-b border-slate-200 py-4">
+      <Card className="w-full lg:w-[380px] bg-white/90 backdrop-blur-sm border-l border-border rounded-none lg:rounded-l-3xl shadow-2xl flex flex-col shrink-0 animate-fade-up">
+        <CardHeader className="bg-gradient-to-r from-muted to-muted border-b border-border py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <ShoppingCart className="h-5 w-5 text-primary" />
@@ -325,39 +325,39 @@ export default function Pricing() {
 
         <CardContent className="flex-1 p-0 overflow-y-auto custom-scrollbar">
           {cart.length > 0 ? (
-            <div className="divide-y divide-slate-200">
+            <div className="divide-y divide-border">
               {cart.map((item) => (
                 <div key={item.id} className="p-4 hover:bg-slate-50/80 transition-colors group">
                   <div className="flex justify-between items-start mb-2">
                     <div className="flex gap-3">
-                      <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center shrink-0">
-                        <item.icon className="h-5 w-5 text-slate-500" />
+                      <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-muted to-muted flex items-center justify-center shrink-0">
+                        <item.icon className="h-5 w-5 text-muted-foreground" />
                       </div>
                       <div>
-                        <h4 className="text-sm font-bold text-slate-900 leading-none">{item.name}</h4>
-                        <span className="text-[10px] uppercase font-bold text-slate-500 tracking-tighter mt-1 block">
+                        <h4 className="text-sm font-bold text-foreground leading-none">{item.name}</h4>
+                        <span className="text-[10px] uppercase font-bold text-muted-foreground tracking-tighter mt-1 block">
                           ₹{item.price} / unit ({item.category})
                         </span>
                       </div>
                     </div>
-                    <span className="text-sm font-black text-slate-900">₹{item.price * item.qty}</span>
+                    <span className="text-sm font-black text-foreground">₹{item.price * item.qty}</span>
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1 bg-slate-100 rounded-lg p-0.5">
+                    <div className="flex items-center gap-1 bg-muted rounded-lg p-0.5">
                       <Button
                         size="icon"
                         variant="ghost"
-                        className="h-7 w-7 rounded-md hover:bg-white hover:shadow-sm transition-all"
+                        className="h-7 w-7 rounded-md hover:bg-card hover:shadow-sm transition-all"
                         onClick={() => updateQty(item.id, -1)}
                       >
                         <Minus className="h-3 w-3" />
                       </Button>
-                      <span className="w-8 text-center text-xs font-bold text-slate-900">{item.qty}</span>
+                      <span className="w-8 text-center text-xs font-bold text-foreground">{item.qty}</span>
                       <Button
                         size="icon"
                         variant="ghost"
-                        className="h-7 w-7 rounded-md hover:bg-white hover:shadow-sm transition-all"
+                        className="h-7 w-7 rounded-md hover:bg-card hover:shadow-sm transition-all"
                         onClick={() => updateQty(item.id, 1)}
                       >
                         <Plus className="h-3 w-3" />
@@ -366,7 +366,7 @@ export default function Pricing() {
                     <Button
                       size="icon"
                       variant="ghost"
-                      className="h-7 w-7 opacity-0 group-hover:opacity-100 text-red-500 hover:bg-red-50 hover:text-red-600 transition-all"
+                      className="h-7 w-7 opacity-0 group-hover:opacity-100 text-error-foreground hover:bg-error-surface hover:text-error-foreground transition-all"
                       onClick={() => updateQty(item.id, -item.qty)}
                     >
                       <Trash2 className="h-3.5 w-3.5" />
@@ -377,27 +377,27 @@ export default function Pricing() {
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center p-12 text-center h-full opacity-40">
-              <div className="h-20 w-20 rounded-full border-4 border-dashed border-slate-400 flex items-center justify-center mb-4 bg-gradient-to-br from-slate-100 to-slate-200">
-                <Package className="h-10 w-10 text-slate-500" />
+              <div className="h-20 w-20 rounded-full border-4 border-dashed border-border flex items-center justify-center mb-4 bg-gradient-to-br from-muted to-muted">
+                <Package className="h-10 w-10 text-muted-foreground" />
               </div>
-              <h3 className="text-sm font-bold uppercase tracking-widest mb-1 text-slate-800">Your cart is empty</h3>
-              <p className="text-xs text-slate-500 max-w-[180px]">Select items from the grid to build your laundry order.</p>
+              <h3 className="text-sm font-bold uppercase tracking-widest mb-1 text-text-strong">Your cart is empty</h3>
+              <p className="text-xs text-muted-foreground max-w-[180px]">Select items from the grid to build your laundry order.</p>
             </div>
           )}
         </CardContent>
 
-        <CardFooter className="flex flex-col gap-4 p-6 border-t border-slate-200 bg-gradient-to-b from-slate-50 to-slate-100">
+        <CardFooter className="flex flex-col gap-4 p-6 border-t border-border bg-gradient-to-b from-muted to-muted">
           <div className="w-full space-y-2">
-            <div className="flex justify-between text-xs text-slate-500 font-bold font uppercase">
+            <div className="flex justify-between text-xs text-muted-foreground font-bold font uppercase">
               <span>Subtotal</span>
               <span>₹{total}</span>
             </div>
-            <div className="flex justify-between text-xs text-slate-500 font-bold uppercase">
+            <div className="flex justify-between text-xs text-muted-foreground font-bold uppercase">
               <span>Tax (0%)</span>
               <span>₹0</span>
             </div>
-            <div className="flex justify-between items-center pt-2 border-t border-slate-200">
-              <span className="text-sm font-black uppercase text-slate-900">Total Amount</span>
+            <div className="flex justify-between items-center pt-2 border-t border-border">
+              <span className="text-sm font-black uppercase text-foreground">Total Amount</span>
               <span className="text-2xl font-black text-primary">₹{total}</span>
             </div>
           </div>
@@ -405,7 +405,7 @@ export default function Pricing() {
           <div className="grid grid-cols-2 gap-3 w-full">
             <Button
               variant="outline"
-              className="h-12 font-bold rounded-xl border-2 uppercase text-xs tracking-widest hover:bg-red-50 hover:text-red-600 hover:border-red-200"
+              className="h-12 font-bold rounded-xl border-2 uppercase text-xs tracking-widest hover:bg-error-surface hover:text-error-foreground hover:border-error"
               onClick={() => setCart([])}
             >
               Clear
@@ -419,7 +419,7 @@ export default function Pricing() {
             </Button>
           </div>
           {isEditMode && cart.length > 0 && (
-            <p className="text-xs text-center text-amber-600">
+            <p className="text-xs text-center text-warning-foreground">
               Checkout disabled while editing prices
             </p>
           )}

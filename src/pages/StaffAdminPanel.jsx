@@ -26,21 +26,21 @@ export default function StaffAdminPanel() {
           
           {/* Header */}
           <div className="mb-2">
-            <h1 className="text-[28px] font-bold text-slate-900 dark:text-white tracking-tight">Dashboard</h1>
+            <h1 className="text-[28px] font-bold text-foreground dark:text-white tracking-tight">Dashboard</h1>
           </div>
 
           {/* Orders Section Title */}
           <div className="flex items-center justify-between mt-2">
-            <h2 className="text-lg font-semibold text-slate-800 dark:text-slate-200">Orders</h2>
-            <button className="text-sm font-semibold text-[#345381] dark:text-blue-400 hover:underline">View All</button>
+            <h2 className="text-lg font-semibold text-text-strong dark:text-muted-foreground">Orders</h2>
+            <button className="text-sm font-semibold text-[#345381] dark:text-info-foreground hover:underline">View All</button>
           </div>
 
           {/* Orders Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             
             {/* Add New Order Card */}
-            <div className="border-2 border-dashed border-slate-300 dark:border-slate-700/50 rounded-2xl flex items-center justify-center min-h-[160px] cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors bg-gradient-to-br dark:from-slate-800/80 dark:to-slate-900/60">
-              <Plus className="text-orange-500 w-8 h-8 stroke-[2.5]" />
+            <div className="border-2 border-dashed border-border dark:border-slate-700/50 rounded-2xl flex items-center justify-center min-h-[160px] cursor-pointer hover:bg-background dark:hover:bg-slate-800/50 transition-colors bg-gradient-to-br dark:from-slate-800/80 dark:to-slate-900/60">
+              <Plus className="text-warning-foreground w-8 h-8 stroke-[2.5]" />
             </div>
 
             {/* Order Card 1 */}
@@ -78,7 +78,7 @@ export default function StaffAdminPanel() {
           </div>
 
           {/* Divider Line */}
-          <div className="h-px bg-slate-200 dark:bg-slate-800 my-2" />
+          <div className="h-px bg-muted dark:bg-slate-800 my-2" />
 
           {/* Bottom Left Area (Balance + Stats) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -87,7 +87,7 @@ export default function StaffAdminPanel() {
             <div className="flex flex-col gap-4">
               
               {/* Balance Card */}
-              <div className="bg-[#2f4b7c] dark:bg-indigo-950 rounded-2xl p-6 text-white shadow-md relative overflow-hidden h-[140px] flex flex-col justify-between group">
+              <div className="bg-[#2f4b7c] dark:bg-info rounded-2xl p-6 text-white shadow-md relative overflow-hidden h-[140px] flex flex-col justify-between group">
                 <div className="flex items-center justify-between">
                   <span className="font-semibold text-[15px]">Balance</span>
                   <button className="flex items-center text-xs text-white/80 gap-1 hover:text-white">
@@ -103,16 +103,16 @@ export default function StaffAdminPanel() {
               </div>
 
               {/* Unpaid Orders Card */}
-              <div className="bg-white dark:from-slate-800/80 dark:to-slate-900/60 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700/50 flex flex-col justify-between h-[140px] dark:bg-gradient-to-br">
+              <div className="bg-card dark:from-slate-800/80 dark:to-slate-900/60 rounded-2xl p-6 shadow-sm border border-border dark:border-slate-700/50 flex flex-col justify-between h-[140px] dark:bg-gradient-to-br">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-[15px] text-slate-800 dark:text-slate-200">Unpaid Orders</span>
-                  <button className="flex items-center text-xs text-slate-400 dark:text-slate-500 gap-1 hover:text-slate-300 dark:hover:text-slate-400">
+                  <span className="font-semibold text-[15px] text-text-strong dark:text-muted-foreground">Unpaid Orders</span>
+                  <button className="flex items-center text-xs text-muted-foreground dark:text-muted-foreground gap-1 hover:text-muted-foreground dark:hover:text-muted-foreground">
                     Last 7 Days <ChevronDown className="w-3 h-3" />
                   </button>
                 </div>
-                <div className="flex items-baseline gap-2 mt-4 text-slate-900 dark:text-white">
+                <div className="flex items-baseline gap-2 mt-4 text-foreground dark:text-white">
                   <span className="text-4xl font-extrabold tracking-tight">Rp22,500</span>
-                  <EyeOff className="w-5 h-5 text-slate-300 dark:text-slate-600 cursor-pointer hover:text-slate-500 dark:hover:text-slate-400" />
+                  <EyeOff className="w-5 h-5 text-muted-foreground dark:text-text-moderate cursor-pointer hover:text-muted-foreground dark:hover:text-muted-foreground" />
                 </div>
               </div>
 
@@ -120,9 +120,9 @@ export default function StaffAdminPanel() {
 
             {/* Overall Stats Column */}
             <div className="flex flex-col gap-3">
-              <StatRow icon={AlertTriangle} bg="bg-[#d2e2ec] dark:bg-blue-950/40" text="text-blue-900 dark:text-blue-400" title="Pending Orders" value="0" />
-              <StatRow icon={Clock} bg="bg-orange-100 dark:bg-orange-950/40" text="text-orange-500 dark:text-orange-400" title="On Progress Orders" value="3" />
-              <StatRow icon={ShoppingBag} bg="bg-[#2f4b7c] dark:bg-indigo-600/20" text="text-white dark:text-indigo-400" title="Finished Orders" value="9" />
+              <StatRow icon={AlertTriangle} bg="bg-[#d2e2ec] dark:bg-blue-950/40" text="text-info-foreground dark:text-info-foreground" title="Pending Orders" value="0" />
+              <StatRow icon={Clock} bg="bg-warning-surface dark:bg-orange-950/40" text="text-warning-foreground dark:text-orange-400" title="On Progress Orders" value="3" />
+              <StatRow icon={ShoppingBag} bg="bg-[#2f4b7c] dark:bg-indigo-600/20" text="text-white dark:text-info-foreground" title="Finished Orders" value="9" />
             </div>
 
           </div>
@@ -133,14 +133,14 @@ export default function StaffAdminPanel() {
           
           {/* Date Info */}
           <div className="hidden xl:flex justify-end pt-2 mb-3">
-            <span className="text-sm font-medium text-slate-400 dark:text-slate-500">9 Mar 2024, Saturday</span>
+            <span className="text-sm font-medium text-muted-foreground dark:text-muted-foreground">9 Mar 2024, Saturday</span>
           </div>
 
           {/* Supply List */}
-          <div className="bg-white dark:from-slate-800/80 dark:to-slate-900/60 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700/50 dark:bg-gradient-to-br">
+          <div className="bg-card dark:from-slate-800/80 dark:to-slate-900/60 rounded-2xl p-6 shadow-sm border border-border dark:border-slate-700/50 dark:bg-gradient-to-br">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="font-bold text-slate-800 dark:text-slate-200">Supply List</h3>
-              <button className="text-xs font-semibold text-[#345381] dark:text-blue-400 hover:underline">Update</button>
+              <h3 className="font-bold text-text-strong dark:text-muted-foreground">Supply List</h3>
+              <button className="text-xs font-semibold text-[#345381] dark:text-info-foreground hover:underline">Update</button>
             </div>
 
             <div className="flex flex-col gap-5">
@@ -153,10 +153,10 @@ export default function StaffAdminPanel() {
           </div>
 
           {/* Total Customer Card */}
-          <div className="bg-slate-50 dark:from-slate-800/80 dark:to-slate-900/60 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700/50 mt-0 xl:mt-2 dark:bg-gradient-to-br">
+          <div className="bg-background dark:from-slate-800/80 dark:to-slate-900/60 rounded-2xl p-6 shadow-sm border border-border dark:border-slate-700/50 mt-0 xl:mt-2 dark:bg-gradient-to-br">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-[13px] font-bold text-slate-800 dark:text-slate-200">Total Customer</h3>
-              <button className="flex items-center text-[10px] text-slate-400 dark:text-slate-500 gap-1 hover:text-slate-300 dark:hover:text-slate-400 font-medium">
+              <h3 className="text-[13px] font-bold text-text-strong dark:text-muted-foreground">Total Customer</h3>
+              <button className="flex items-center text-[10px] text-muted-foreground dark:text-muted-foreground gap-1 hover:text-muted-foreground dark:hover:text-muted-foreground font-medium">
                 Last 7 Days <ChevronDown className="w-3 h-3" />
               </button>
             </div>
@@ -180,7 +180,7 @@ export default function StaffAdminPanel() {
                 </ResponsiveContainer>
             </div>
 
-            <div className="flex flex-col items-center mt-2 text-xs font-medium gap-1 text-slate-700 dark:text-slate-200">
+            <div className="flex flex-col items-center mt-2 text-xs font-medium gap-1 text-text-strong dark:text-muted-foreground">
               <div className="text-[13px]"><strong>9</strong> returning customers</div>
               <div className="text-[13px]"><strong>2</strong> new customers</div>
             </div>
@@ -196,21 +196,21 @@ export default function StaffAdminPanel() {
 
 function OrderCard({ id, status, statusColor, date, name, service, price }) {
   return (
-    <div className="bg-white dark:from-slate-800/80 dark:to-slate-900/60 rounded-2xl p-5 shadow-sm border border-slate-100 dark:border-slate-700/50 flex flex-col justify-between min-h-[160px] hover:shadow-md transition-shadow relative dark:bg-gradient-to-br">
+    <div className="bg-card dark:from-slate-800/80 dark:to-slate-900/60 rounded-2xl p-5 shadow-sm border border-border dark:border-slate-700/50 flex flex-col justify-between min-h-[160px] hover:shadow-md transition-shadow relative dark:bg-gradient-to-br">
       <div className="flex items-center justify-between mb-3">
-        <span className="text-xs font-semibold text-slate-400 dark:text-slate-500">{id}</span>
+        <span className="text-xs font-semibold text-muted-foreground dark:text-muted-foreground">{id}</span>
         <span className={cn("text-[10px] font-bold px-3 py-1 rounded-full text-white", statusColor)}>
           {status}
         </span>
       </div>
       <div>
-        <p className="text-[10px] font-medium text-slate-400 dark:text-slate-500 mb-0.5">{date}</p>
-        <p className="font-bold text-[15px] text-slate-800 dark:text-slate-200 mb-1">{name}</p>
-        <p className="text-xs text-slate-500 dark:text-slate-400">{service}</p>
+        <p className="text-[10px] font-medium text-muted-foreground dark:text-muted-foreground mb-0.5">{date}</p>
+        <p className="font-bold text-[15px] text-text-strong dark:text-muted-foreground mb-1">{name}</p>
+        <p className="text-xs text-muted-foreground dark:text-muted-foreground">{service}</p>
       </div>
       <div className="flex items-end justify-between mt-4">
-        <button className="text-[10px] font-bold text-[#345381] dark:text-blue-400 hover:underline uppercase tracking-wider">Update</button>
-        <span className="font-extrabold text-[15px] text-slate-900 dark:text-white">{price}</span>
+        <button className="text-[10px] font-bold text-[#345381] dark:text-info-foreground hover:underline uppercase tracking-wider">Update</button>
+        <span className="font-extrabold text-[15px] text-foreground dark:text-white">{price}</span>
       </div>
     </div>
   );
@@ -218,14 +218,14 @@ function OrderCard({ id, status, statusColor, date, name, service, price }) {
 
 function StatRow({ icon: Icon, bg, text, title, value }) {
   return (
-    <div className="bg-white dark:from-slate-800/80 dark:to-slate-900/60 rounded-2xl p-4 shadow-sm border border-slate-100 dark:border-slate-700/50 flex items-center justify-between pl-5 pr-8 hover:shadow-md transition-shadow dark:bg-gradient-to-br">
+    <div className="bg-card dark:from-slate-800/80 dark:to-slate-900/60 rounded-2xl p-4 shadow-sm border border-border dark:border-slate-700/50 flex items-center justify-between pl-5 pr-8 hover:shadow-md transition-shadow dark:bg-gradient-to-br">
       <div className="flex items-center gap-4">
         <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center", bg)}>
           <Icon className={cn("w-5 h-5", text)} strokeWidth={2.5} />
         </div>
-        <span className="font-semibold text-slate-700 dark:text-slate-200 text-sm">{title}</span>
+        <span className="font-semibold text-text-strong dark:text-muted-foreground text-sm">{title}</span>
       </div>
-      <span className="font-bold text-2xl text-slate-800 dark:text-white">{value}</span>
+      <span className="font-bold text-2xl text-text-strong dark:text-white">{value}</span>
     </div>
   );
 }
@@ -234,15 +234,15 @@ function SupplyItem({ name, left, percent, isWarning = false }) {
   return (
     <div className="flex flex-col gap-1.5 focus-within:outline-none">
       <div className="flex items-center justify-between text-xs">
-        <div className="flex items-center gap-1.5 font-bold text-slate-700 dark:text-slate-200">
+        <div className="flex items-center gap-1.5 font-bold text-text-strong dark:text-muted-foreground">
           {name} 
-          {isWarning && <span className="text-red-500 font-bold mb-0.5" style={{ fontSize: '10px' }}>△</span>}
+          {isWarning && <span className="text-error-foreground font-bold mb-0.5" style={{ fontSize: '10px' }}>△</span>}
         </div>
-        <span className="text-xs font-medium text-slate-500 dark:text-slate-400">{left}</span>
+        <span className="text-xs font-medium text-muted-foreground dark:text-muted-foreground">{left}</span>
       </div>
-      <div className="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+      <div className="w-full bg-muted dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
         <div 
-          className={cn("h-full rounded-full transition-all duration-500", isWarning ? "bg-red-400" : "bg-[#2f4b7c] dark:bg-blue-500")} 
+          className={cn("h-full rounded-full transition-all duration-500", isWarning ? "bg-red-400" : "bg-[#2f4b7c] dark:bg-info")}
           style={{ width: `${percent}%` }}
         />
       </div>
