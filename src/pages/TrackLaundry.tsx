@@ -28,13 +28,13 @@ const MOCK_ORDERS: TrackedOrderView[] = [
 ];
 
 const statusStyles: Record<string, { label: string; color: string }> = {
-  pending: { label: "Pending", color: "bg-slate-100 text-slate-700 border-slate-200" },
-  submitted: { label: "Submitted", color: "bg-sky-100 text-sky-700 border-sky-200" },
-  washing: { label: "Washing", color: "bg-sky-100 text-sky-700 border-sky-200" },
-  processing: { label: "Processing", color: "bg-sky-100 text-sky-700 border-sky-200" },
-  drying: { label: "Drying", color: "bg-amber-100 text-amber-700 border-amber-200" },
-  ready: { label: "Ready", color: "bg-emerald-100 text-emerald-700 border-emerald-200" },
-  delivered: { label: "Delivered", color: "bg-emerald-100 text-emerald-700 border-emerald-200" },
+  pending: { label: "Pending", color: "bg-muted text-text-strong border-border" },
+  submitted: { label: "Submitted", color: "bg-info-surface text-info-foreground border-info" },
+  washing: { label: "Washing", color: "bg-info-surface text-info-foreground border-info" },
+  processing: { label: "Processing", color: "bg-info-surface text-info-foreground border-info" },
+  drying: { label: "Drying", color: "bg-warning-surface text-warning-foreground border-warning" },
+  ready: { label: "Ready", color: "bg-success-surface text-success-foreground border-success" },
+  delivered: { label: "Delivered", color: "bg-success-surface text-success-foreground border-success" },
 };
 
 function getProgress(status: string): number {
@@ -99,10 +99,10 @@ export default function TrackLaundry() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-20 animate-fade-up">
-        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center mb-4 shadow-inner">
-          <Loader2 className="h-8 w-8 animate-spin text-slate-600" />
+        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-muted to-muted flex items-center justify-center mb-4 shadow-inner">
+          <Loader2 className="h-8 w-8 animate-spin text-text-moderate" />
         </div>
-        <p className="text-slate-500 font-medium">Loading orders...</p>
+        <p className="text-muted-foreground font-medium">Loading orders...</p>
       </div>
     );
   }
@@ -111,44 +111,44 @@ export default function TrackLaundry() {
     <div className="flex flex-col gap-8 max-w-5xl mx-auto w-full animate-fade-up">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900">Track Laundry</h1>
-          <p className="text-slate-500 mt-2">Monitor your active orders in real-time.</p>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">Track Laundry</h1>
+          <p className="text-muted-foreground mt-2">Monitor your active orders in real-time.</p>
         </div>
         <div className="relative w-full md:w-72">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="Search Order ID..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-9 h-11 bg-white border-slate-200"
+            className="pl-9 h-11 bg-card border-border"
           />
         </div>
       </div>
 
       {filtered.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 bg-card rounded-2xl border border-dashed border-border">
-          <div className="h-16 w-16 rounded-full bg-slate-100 flex items-center justify-center mb-4">
-            <TrendingUp className="h-8 w-8 text-slate-500" />
+          <div className="h-16 w-16 rounded-full bg-muted flex items-center justify-center mb-4">
+            <TrendingUp className="h-8 w-8 text-muted-foreground" />
           </div>
           <h3 className="text-lg font-bold">No Active Orders</h3>
-          <p className="text-slate-500 text-sm">When you drop off your laundry, it will appear here.</p>
+          <p className="text-muted-foreground text-sm">When you drop off your laundry, it will appear here.</p>
         </div>
       ) : (
         <div className="grid gap-6">
           {filtered.map((order) => (
             <Card key={order.id} className="overflow-hidden border-border bg-card shadow-sm hover:shadow-md transition-shadow">
-              <CardHeader className="border-b bg-slate-100/30 py-4">
+              <CardHeader className="border-b bg-muted/30 py-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Package className="h-5 w-5 text-slate-900" />
+                      <Package className="h-5 w-5 text-foreground" />
                     </div>
                     <div>
                       <CardTitle className="text-base font-bold">{order.id}</CardTitle>
                       <CardDescription className="text-xs">{order.items}</CardDescription>
                     </div>
                   </div>
-                  <Badge className={`${statusStyles[order.status]?.color || "bg-slate-100 text-slate-700 border-slate-200"} border shadow-none px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider`}>
+                  <Badge className={`${statusStyles[order.status]?.color || "bg-muted text-text-strong border-border"} border shadow-none px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider`}>
                     {statusStyles[order.status]?.label || order.status}
                   </Badge>
                 </div>
@@ -157,23 +157,23 @@ export default function TrackLaundry() {
                 <div className="grid md:grid-cols-3 gap-8 items-center">
                   <div className="space-y-4">
                     <div className="flex items-center gap-2 text-sm">
-                      <Clock className="h-4 w-4 text-slate-500" />
-                      <span className="text-slate-500">Placed:</span>
+                      <Clock className="h-4 w-4 text-muted-foreground" />
+                      <span className="text-muted-foreground">Placed:</span>
                       <span className="font-medium text-foreground">{order.placedAt}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm font-semibold">
-                      <CheckCircle2 className="h-4 w-4 text-green-500" />
-                      <span className="text-slate-500">Expected:</span>
+                      <CheckCircle2 className="h-4 w-4 text-success-foreground" />
+                      <span className="text-muted-foreground">Expected:</span>
                       <span className="text-foreground">{order.expectedBy}</span>
                     </div>
                   </div>
 
                   <div className="md:col-span-2 space-y-4">
-                    <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-500">
+                    <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-muted-foreground">
                       <span>Order Progress</span>
-                      <span className="text-slate-900">{order.progress ?? getProgress(order.status)}%</span>
+                      <span className="text-foreground">{order.progress ?? getProgress(order.status)}%</span>
                     </div>
-                    <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden border border-border">
+                    <div className="h-3 w-full bg-muted rounded-full overflow-hidden border border-border">
                       <div
                         className="h-full bg-primary transition-all duration-1000 ease-out rounded-full"
                         style={{ width: `${order.progress ?? getProgress(order.status)}%` }}
@@ -191,7 +191,7 @@ export default function TrackLaundry() {
                         return (
                           <div key={step.label} className={`flex flex-col items-center gap-1 ${active ? "opacity-100" : "opacity-30"}`}>
                             <div className={`h-2 w-2 rounded-full ${active ? "bg-primary" : "bg-slate-100-foreground"}`} />
-                            <span className={`text-[9px] font-bold uppercase ${active ? "text-slate-900" : "text-slate-500"}`}>
+                            <span className={`text-[9px] font-bold uppercase ${active ? "text-foreground" : "text-muted-foreground"}`}>
                               {step.label}
                             </span>
                           </div>

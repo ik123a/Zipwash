@@ -47,7 +47,7 @@ export default function StaffAdminPanel() {
             <OrderCard 
               id="#00012" 
               status="On Progress" 
-              statusColor="bg-amber-500" 
+              statusColor="bg-warning"
               date="6 Mar 2024" 
               name="John Doe" 
               service="Dry clean" 
@@ -58,7 +58,7 @@ export default function StaffAdminPanel() {
             <OrderCard 
               id="#00011" 
               status="On Progress" 
-              statusColor="bg-amber-500" 
+              statusColor="bg-warning"
               date="5 Mar 2024" 
               name="Ann Smith" 
               service="Clean and press" 
@@ -69,7 +69,7 @@ export default function StaffAdminPanel() {
             <OrderCard 
               id="#00010" 
               status="Pending" 
-              statusColor="bg-red-500" 
+              statusColor="bg-error"
               date="9 Mar 2024" 
               name="Jim Park" 
               service="Clean and press" 
@@ -99,7 +99,7 @@ export default function StaffAdminPanel() {
                   <EyeOff className="w-5 h-5 text-white/50 cursor-pointer hover:text-white" />
                 </div>
                 {/* Background decorative shape (optional) */}
-                <div className="absolute -right-8 -bottom-8 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+                <div className="absolute -right-8 -bottom-8 w-32 h-32 bg-card/5 rounded-full blur-2xl"></div>
               </div>
 
               {/* Unpaid Orders Card */}
@@ -120,9 +120,9 @@ export default function StaffAdminPanel() {
 
             {/* Overall Stats Column */}
             <div className="flex flex-col gap-3">
-              <StatRow icon={AlertTriangle} bg="bg-[#d2e2ec] dark:bg-blue-950/40" text="text-info-foreground dark:text-info-foreground" title="Pending Orders" value="0" />
-              <StatRow icon={Clock} bg="bg-warning-surface dark:bg-orange-950/40" text="text-warning-foreground dark:text-orange-400" title="On Progress Orders" value="3" />
-              <StatRow icon={ShoppingBag} bg="bg-[#2f4b7c] dark:bg-indigo-600/20" text="text-white dark:text-info-foreground" title="Finished Orders" value="9" />
+              <StatRow icon={AlertTriangle} bg="bg-[#d2e2ec] dark:bg-info/40" text="text-info-foreground dark:text-info-foreground" title="Pending Orders" value="0" />
+              <StatRow icon={Clock} bg="bg-warning-surface dark:bg-orange-950/40" text="text-warning-foreground dark:text-warning-foreground" title="On Progress Orders" value="3" />
+              <StatRow icon={ShoppingBag} bg="bg-[#2f4b7c] dark:bg-info/20" text="text-white dark:text-info-foreground" title="Finished Orders" value="9" />
             </div>
 
           </div>
@@ -242,7 +242,7 @@ function SupplyItem({ name, left, percent, isWarning = false }) {
       </div>
       <div className="w-full bg-muted dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
         <div 
-          className={cn("h-full rounded-full transition-all duration-500", isWarning ? "bg-red-400" : "bg-[#2f4b7c] dark:bg-info")}
+          className={cn("h-full rounded-full transition-all duration-500", isWarning ? "bg-error" : "bg-[#2f4b7c] dark:bg-info")}
           style={{ width: `${percent}%` }}
         />
       </div>

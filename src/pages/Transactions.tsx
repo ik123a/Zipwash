@@ -26,14 +26,14 @@ interface Transaction {
 }
 
 const statusConfig: Record<string, string> = {
-  Completed: "bg-green-100 text-green-700 border-green-200",
-  submitted: "bg-slate-100 text-slate-700 border-slate-200",
-  Washing:   "bg-blue-100 text-blue-700 border-blue-200",
-  Drying:    "bg-amber-100 text-amber-700 border-amber-200",
-  Pending:   "bg-slate-100 text-slate-700 border-slate-200",
-  processing: "bg-yellow-100 text-yellow-700 border-yellow-200",
-  ready:     "bg-green-100 text-green-700 border-green-200",
-  delivered: "bg-emerald-100 text-emerald-700 border-emerald-200",
+  Completed: "bg-success-surface text-success-foreground border-success",
+  submitted: "bg-muted text-text-strong border-border",
+  Washing:   "bg-info-surface text-info-foreground border-info",
+  Drying:    "bg-warning-surface text-warning-foreground border-warning",
+  Pending:   "bg-muted text-text-strong border-border",
+  processing: "bg-warning-surface text-warning-foreground border-warning",
+  ready:     "bg-success-surface text-success-foreground border-success",
+  delivered: "bg-success-surface text-success-foreground border-success",
 };
 
 export default function Transactions() {
@@ -101,7 +101,7 @@ export default function Transactions() {
       )}
 
       {error && !loading && (
-        <div className="p-4 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm">
+        <div className="p-4 rounded-lg bg-error-surface border border-error text-error-foreground text-sm">
           {error}
           <Button variant="ghost" size="sm" className="ml-2" onClick={loadTransactions}>Retry</Button>
         </div>
@@ -151,7 +151,7 @@ export default function Transactions() {
                       </td>
                       <td className="px-6 py-5 font-black text-sm text-foreground">₹{t.amount}</td>
                       <td className="px-6 py-5">
-                        <Badge className={`${statusConfig[t.status] || "bg-slate-100 text-slate-700"} text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 border shadow-none`}>
+                        <Badge className={`${statusConfig[t.status] || "bg-muted text-text-strong"} text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 border shadow-none`}>
                           {t.status}
                         </Badge>
                       </td>

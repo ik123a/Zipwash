@@ -233,11 +233,11 @@ const getCustomerTag = (totalOrders: number, lastOrderDate: string): { tag: Cust
   const daysSinceLastOrder = Math.floor((Date.now() - new Date(lastOrderDate).getTime()) / (1000 * 60 * 60 * 24));
 
   if (totalOrders >= 25) {
-    return { tag: 'frequent', label: 'Frequent', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' };
+    return { tag: 'frequent', label: 'Frequent', color: 'bg-success-surface text-success-foreground border-success' };
   } else if (totalOrders >= 10 && daysSinceLastOrder < 14) {
-    return { tag: 'moderate', label: 'Moderate', color: 'bg-blue-100 text-blue-700 border-blue-200' };
+    return { tag: 'moderate', label: 'Moderate', color: 'bg-info-surface text-info-foreground border-info' };
   } else {
-    return { tag: 'inactive', label: 'Inactive', color: 'bg-slate-100 text-slate-700 border-slate-200' };
+    return { tag: 'inactive', label: 'Inactive', color: 'bg-muted text-text-strong border-border' };
   }
 };
 
@@ -307,7 +307,7 @@ export default function CustomersPage() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-20 animate-fade-up">
-        <RefreshCw className="h-8 w-8 animate-spin text-slate-600 mb-4" />
+        <RefreshCw className="h-8 w-8 animate-spin text-text-moderate mb-4" />
         <p className="text-muted-foreground font-medium">Loading customers...</p>
       </div>
     );
@@ -318,11 +318,11 @@ export default function CustomersPage() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Customers</h1>
-          <p className="text-slate-500 mt-1">Manage and view customer information</p>
+          <h1 className="text-3xl font-bold text-foreground">Customers</h1>
+          <p className="text-muted-foreground mt-1">Manage and view customer information</p>
         </div>
         <div className="flex items-center gap-2">
-          <Badge variant="outline" className="bg-slate-50 text-slate-700 border-slate-200">
+          <Badge variant="outline" className="bg-background text-text-strong border-border">
             <Users className="h-3 w-3 mr-1" />
             {stats.total} customers
           </Badge>
@@ -334,44 +334,44 @@ export default function CustomersPage() {
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-500">Total Customers</p>
-              <p className="text-2xl font-bold text-slate-900">{stats.total}</p>
+              <p className="text-sm text-muted-foreground">Total Customers</p>
+              <p className="text-2xl font-bold text-foreground">{stats.total}</p>
             </div>
-            <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center">
-              <Users className="h-5 w-5 text-slate-600" />
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4 flex items-center justify-between">
-            <div>
-              <p className="text-sm text-slate-500">Frequent</p>
-              <p className="text-2xl font-bold text-emerald-600">{stats.frequent}</p>
-            </div>
-            <div className="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
-              <Star className="h-5 w-5 text-emerald-600" />
+            <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
+              <Users className="h-5 w-5 text-text-moderate" />
             </div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-500">Moderate</p>
-              <p className="text-2xl font-bold text-blue-600">{stats.moderate}</p>
+              <p className="text-sm text-muted-foreground">Frequent</p>
+              <p className="text-2xl font-bold text-success-foreground">{stats.frequent}</p>
             </div>
-            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
-              <TrendingUp className="h-5 w-5 text-blue-600" />
+            <div className="w-10 h-10 rounded-lg bg-success-surface flex items-center justify-center">
+              <Star className="h-5 w-5 text-success-foreground" />
             </div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-500">Total Revenue</p>
-              <p className="text-2xl font-bold text-slate-900">₹{stats.totalRevenue.toLocaleString()}</p>
+              <p className="text-sm text-muted-foreground">Moderate</p>
+              <p className="text-2xl font-bold text-info-foreground">{stats.moderate}</p>
             </div>
-            <div className="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
-              <IndianRupee className="h-5 w-5 text-emerald-600" />
+            <div className="w-10 h-10 rounded-lg bg-info-surface flex items-center justify-center">
+              <TrendingUp className="h-5 w-5 text-info-foreground" />
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4 flex items-center justify-between">
+            <div>
+              <p className="text-sm text-muted-foreground">Total Revenue</p>
+              <p className="text-2xl font-bold text-foreground">₹{stats.totalRevenue.toLocaleString()}</p>
+            </div>
+            <div className="w-10 h-10 rounded-lg bg-success-surface flex items-center justify-center">
+              <IndianRupee className="h-5 w-5 text-success-foreground" />
             </div>
           </CardContent>
         </Card>
@@ -382,7 +382,7 @@ export default function CustomersPage() {
         <CardContent className="p-4">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Search by name, roll number, or phone..."
                 className="pl-9"
@@ -414,10 +414,10 @@ export default function CustomersPage() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="rounded-md border bg-white overflow-hidden">
+          <div className="rounded-md border bg-card overflow-hidden">
             <Table>
               <TableHeader>
-                <TableRow className="bg-slate-100/50">
+                <TableRow className="bg-muted/50">
                   <TableHead>Customer</TableHead>
                   <TableHead>Contact</TableHead>
                   <TableHead className="hidden md:table-cell">Roll Number</TableHead>
@@ -431,7 +431,7 @@ export default function CustomersPage() {
               <TableBody>
                 {paginatedCustomers.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={8} className="text-center py-8 text-slate-500">
+                    <TableCell colSpan={8} className="text-center py-8 text-muted-foreground">
                       No customers found matching your filters.
                     </TableCell>
                   </TableRow>
@@ -442,19 +442,19 @@ export default function CustomersPage() {
                       <TableRow key={customer.id}>
                         <TableCell>
                           <div className="flex items-center gap-3">
-                            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
-                              <span className="text-sm font-bold text-slate-600">
+                            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-muted to-muted flex items-center justify-center">
+                              <span className="text-sm font-bold text-text-moderate">
                                 {customer.name.split(' ').map(n => n[0]).join('')}
                               </span>
                             </div>
                             <div>
-                              <p className="font-medium text-slate-900">{customer.name}</p>
-                              <p className="text-xs text-slate-500">{customer.email}</p>
+                              <p className="font-medium text-foreground">{customer.name}</p>
+                              <p className="text-xs text-muted-foreground">{customer.email}</p>
                             </div>
                           </div>
                         </TableCell>
                         <TableCell>
-                          <div className="flex items-center gap-1 text-sm text-slate-600">
+                          <div className="flex items-center gap-1 text-sm text-text-moderate">
                             <Phone className="h-3 w-3" />
                             {customer.phone}
                           </div>
@@ -462,7 +462,7 @@ export default function CustomersPage() {
                         <TableCell className="hidden md:table-cell font-mono text-sm">
                           {customer.rollNumber}
                         </TableCell>
-                        <TableCell className="hidden lg:table-cell text-sm text-slate-600">
+                        <TableCell className="hidden lg:table-cell text-sm text-text-moderate">
                           <div className="flex items-center gap-1">
                             <MapPin className="h-3 w-3" />
                             {customer.hostel}, Room {customer.room}
@@ -470,7 +470,7 @@ export default function CustomersPage() {
                         </TableCell>
                         <TableCell>
                           <div className="flex items-center gap-2">
-                            <Package className="h-4 w-4 text-slate-400" />
+                            <Package className="h-4 w-4 text-muted-foreground" />
                             <span className="font-medium">{customer.totalOrders}</span>
                           </div>
                         </TableCell>
@@ -502,7 +502,7 @@ export default function CustomersPage() {
           {/* Pagination */}
           {totalPages > 1 && (
             <div className="flex items-center justify-between mt-4">
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-muted-foreground">
                 Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(currentPage * itemsPerPage, filteredCustomers.length)} of {filteredCustomers.length}
               </p>
               <div className="flex items-center gap-2">
@@ -514,7 +514,7 @@ export default function CustomersPage() {
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
-                <span className="text-sm text-slate-600">
+                <span className="text-sm text-text-moderate">
                   Page {currentPage} of {totalPages}
                 </span>
                 <Button
@@ -538,14 +538,14 @@ export default function CustomersPage() {
             <>
               <DialogHeader>
                 <DialogTitle className="flex items-center gap-3">
-                  <div className="h-12 w-12 rounded-full bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
-                    <span className="text-lg font-bold text-slate-600">
+                  <div className="h-12 w-12 rounded-full bg-gradient-to-br from-muted to-muted flex items-center justify-center">
+                    <span className="text-lg font-bold text-text-moderate">
                       {selectedCustomer.name.split(' ').map(n => n[0]).join('')}
                     </span>
                   </div>
                   <div>
                     <span className="block">{selectedCustomer.name}</span>
-                    <span className="text-sm font-normal text-slate-500">{selectedCustomer.email}</span>
+                    <span className="text-sm font-normal text-muted-foreground">{selectedCustomer.email}</span>
                   </div>
                 </DialogTitle>
               </DialogHeader>
@@ -561,35 +561,35 @@ export default function CustomersPage() {
                   {/* Overview Tab */}
                   <TabsContent value="overview" className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
-                      <Card className="bg-slate-50">
+                      <Card className="bg-background">
                         <CardContent className="p-4">
-                          <p className="text-sm text-slate-500">Contact</p>
+                          <p className="text-sm text-muted-foreground">Contact</p>
                           <div className="flex items-center gap-2 mt-1">
-                            <Phone className="h-4 w-4 text-slate-400" />
+                            <Phone className="h-4 w-4 text-muted-foreground" />
                             <p className="font-medium">{selectedCustomer.phone}</p>
                           </div>
                         </CardContent>
                       </Card>
-                      <Card className="bg-slate-50">
+                      <Card className="bg-background">
                         <CardContent className="p-4">
-                          <p className="text-sm text-slate-500">Roll Number</p>
+                          <p className="text-sm text-muted-foreground">Roll Number</p>
                           <p className="font-medium font-mono">{selectedCustomer.rollNumber}</p>
                         </CardContent>
                       </Card>
-                      <Card className="bg-slate-50">
+                      <Card className="bg-background">
                         <CardContent className="p-4">
-                          <p className="text-sm text-slate-500">Location</p>
+                          <p className="text-sm text-muted-foreground">Location</p>
                           <div className="flex items-center gap-2 mt-1">
-                            <MapPin className="h-4 w-4 text-slate-400" />
+                            <MapPin className="h-4 w-4 text-muted-foreground" />
                             <p className="font-medium">{selectedCustomer.hostel}, Room {selectedCustomer.room}</p>
                           </div>
                         </CardContent>
                       </Card>
-                      <Card className="bg-slate-50">
+                      <Card className="bg-background">
                         <CardContent className="p-4">
-                          <p className="text-sm text-slate-500">Joined</p>
+                          <p className="text-sm text-muted-foreground">Joined</p>
                           <div className="flex items-center gap-2 mt-1">
-                            <Calendar className="h-4 w-4 text-slate-400" />
+                            <Calendar className="h-4 w-4 text-muted-foreground" />
                             <p className="font-medium">{new Date(selectedCustomer.joinedDate).toLocaleDateString()}</p>
                           </div>
                         </CardContent>
@@ -597,19 +597,19 @@ export default function CustomersPage() {
                     </div>
 
                     <div className="grid grid-cols-3 gap-4 mt-4">
-                      <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-100 text-center">
-                        <p className="text-2xl font-bold text-emerald-700">{selectedCustomer.totalOrders}</p>
-                        <p className="text-sm text-emerald-600">Total Orders</p>
+                      <div className="p-4 rounded-xl bg-success-surface border border-border text-center">
+                        <p className="text-2xl font-bold text-success-foreground">{selectedCustomer.totalOrders}</p>
+                        <p className="text-sm text-success-foreground">Total Orders</p>
                       </div>
-                      <div className="p-4 rounded-xl bg-blue-50 border border-blue-100 text-center">
-                        <p className="text-2xl font-bold text-blue-700">₹{selectedCustomer.totalSpent.toLocaleString()}</p>
-                        <p className="text-sm text-blue-600">Total Spent</p>
+                      <div className="p-4 rounded-xl bg-info-surface border border-border text-center">
+                        <p className="text-2xl font-bold text-info-foreground">₹{selectedCustomer.totalSpent.toLocaleString()}</p>
+                        <p className="text-sm text-info-foreground">Total Spent</p>
                       </div>
-                      <div className="p-4 rounded-xl bg-slate-50 border border-slate-100 text-center">
-                        <p className="text-2xl font-bold text-slate-700">
+                      <div className="p-4 rounded-xl bg-background border border-border text-center">
+                        <p className="text-2xl font-bold text-text-strong">
                           ₹{Math.round(selectedCustomer.totalSpent / selectedCustomer.totalOrders)}
                         </p>
-                        <p className="text-sm text-slate-600">Avg per Order</p>
+                        <p className="text-sm text-text-moderate">Avg per Order</p>
                       </div>
                     </div>
                   </TabsContent>
@@ -625,9 +625,9 @@ export default function CustomersPage() {
                       return (
                         <>
                           {/* Customer Tag */}
-                          <div className="flex items-center justify-between p-4 rounded-xl bg-slate-50 border">
+                          <div className="flex items-center justify-between p-4 rounded-xl bg-background border">
                             <div>
-                              <p className="text-sm text-slate-500">Customer Category</p>
+                              <p className="text-sm text-muted-foreground">Customer Category</p>
                               <p className="text-lg font-medium">{tag.label} Customer</p>
                             </div>
                             <Badge variant="outline" className={tag.color + ' text-base px-3 py-1'}>
@@ -644,8 +644,8 @@ export default function CustomersPage() {
                               <div>
                                 <div className="flex items-center justify-between mb-2">
                                   <div className="flex items-center gap-2">
-                                    <Clock className="h-4 w-4 text-slate-400" />
-                                    <span className="text-sm text-slate-600">Order Frequency</span>
+                                    <Clock className="h-4 w-4 text-muted-foreground" />
+                                    <span className="text-sm text-text-moderate">Order Frequency</span>
                                   </div>
                                   <span className="font-medium">{frequency}</span>
                                 </div>
@@ -655,8 +655,8 @@ export default function CustomersPage() {
                               <div>
                                 <div className="flex items-center justify-between mb-2">
                                   <div className="flex items-center gap-2">
-                                    <Calendar className="h-4 w-4 text-slate-400" />
-                                    <span className="text-sm text-slate-600">Last Order</span>
+                                    <Calendar className="h-4 w-4 text-muted-foreground" />
+                                    <span className="text-sm text-text-moderate">Last Order</span>
                                   </div>
                                   <span className="font-medium">{daysSinceLastOrder} days ago</span>
                                 </div>
@@ -677,7 +677,7 @@ export default function CustomersPage() {
                                   <div key={service.service}>
                                     <div className="flex items-center justify-between mb-1">
                                       <span className="text-sm font-medium">{service.service}</span>
-                                      <span className="text-sm text-slate-500">{service.count} orders ({service.percentage}%)</span>
+                                      <span className="text-sm text-muted-foreground">{service.count} orders ({service.percentage}%)</span>
                                     </div>
                                     <Progress
                                       value={service.percentage}
@@ -689,7 +689,7 @@ export default function CustomersPage() {
                                   </div>
                                 ))
                               ) : (
-                                <p className="text-sm text-slate-500 text-center py-4">No service history available</p>
+                                <p className="text-sm text-muted-foreground text-center py-4">No service history available</p>
                               )}
                             </CardContent>
                           </Card>
@@ -708,7 +708,7 @@ export default function CustomersPage() {
                               <div className="flex items-center justify-between">
                                 <div>
                                   <p className="font-medium">{order.id}</p>
-                                  <p className="text-sm text-slate-500">{order.date}</p>
+                                  <p className="text-sm text-muted-foreground">{order.date}</p>
                                 </div>
                                 <div className="text-right">
                                   <p className="font-medium">₹{order.total}</p>
@@ -717,7 +717,7 @@ export default function CustomersPage() {
                                   </Badge>
                                 </div>
                               </div>
-                              <div className="mt-2 flex items-center gap-2 text-sm text-slate-600">
+                              <div className="mt-2 flex items-center gap-2 text-sm text-text-moderate">
                                 <Package className="h-4 w-4" />
                                 <span>{order.items} items</span>
                                 <span className="mx-2">•</span>
@@ -729,8 +729,8 @@ export default function CustomersPage() {
                       </div>
                     ) : (
                       <div className="text-center py-8">
-                        <Package className="h-12 w-12 text-slate-300 mx-auto mb-3" />
-                        <p className="text-slate-500">No order history available</p>
+                        <Package className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
+                        <p className="text-muted-foreground">No order history available</p>
                       </div>
                     )}
                   </TabsContent>

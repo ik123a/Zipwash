@@ -68,11 +68,11 @@ interface Order {
 }
 
 const statusColors: Record<Order['status'], { variant: 'default' | 'secondary' | 'destructive' | 'outline'; label: string; color: string }> = {
-  submitted: { variant: 'secondary', label: 'Submitted', color: 'bg-slate-100 text-slate-700 border-slate-200' },
-  processing: { variant: 'default', label: 'Processing', color: 'bg-blue-100 text-blue-700 border-blue-200' },
-  washing: { variant: 'destructive', label: 'Washing', color: 'bg-yellow-100 text-yellow-700 border-yellow-200' },
-  ready: { variant: 'outline', label: 'Ready', color: 'bg-green-100 text-green-700 border-green-200' },
-  delivered: { variant: 'secondary', label: 'Delivered', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
+  submitted: { variant: 'secondary', label: 'Submitted', color: 'bg-muted text-text-strong border-border' },
+  processing: { variant: 'default', label: 'Processing', color: 'bg-info-surface text-info-foreground border-info' },
+  washing: { variant: 'destructive', label: 'Washing', color: 'bg-warning-surface text-warning-foreground border-warning' },
+  ready: { variant: 'outline', label: 'Ready', color: 'bg-success-surface text-success-foreground border-success' },
+  delivered: { variant: 'secondary', label: 'Delivered', color: 'bg-success-surface text-success-foreground border-success' },
 };
 
 const itemsList = ['T-shirt', 'Pants', 'Shirt', 'Dress', 'Jacket', 'Coat', 'Suit', 'Carpets', 'Bed Sheets'];
@@ -242,8 +242,8 @@ export default function OrdersPage() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-20 animate-fade-up">
-        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center mb-4 shadow-inner">
-          <RefreshCw className="h-8 w-8 animate-spin text-slate-600" />
+        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-muted to-muted flex items-center justify-center mb-4 shadow-inner">
+          <RefreshCw className="h-8 w-8 animate-spin text-text-moderate" />
         </div>
         <p className="text-muted-foreground font-medium">Loading orders...</p>
       </div>
@@ -255,8 +255,8 @@ export default function OrdersPage() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Order Management</h1>
-          <p className="text-slate-500 mt-1">View and manage all laundry orders</p>
+          <h1 className="text-3xl font-bold text-foreground">Order Management</h1>
+          <p className="text-muted-foreground mt-1">View and manage all laundry orders</p>
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" size="sm" onClick={handleExport}>
@@ -275,44 +275,44 @@ export default function OrdersPage() {
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-500">Total Orders</p>
-              <p className="text-2xl font-bold text-slate-900">{stats.total}</p>
+              <p className="text-sm text-muted-foreground">Total Orders</p>
+              <p className="text-2xl font-bold text-foreground">{stats.total}</p>
             </div>
-            <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center">
-              <ShoppingBag className="h-5 w-5 text-slate-600" />
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4 flex items-center justify-between">
-            <div>
-              <p className="text-sm text-slate-500">Today's Orders</p>
-              <p className="text-2xl font-bold text-slate-900">{stats.today}</p>
-            </div>
-            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
-              <Calendar className="h-5 w-5 text-blue-600" />
+            <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
+              <ShoppingBag className="h-5 w-5 text-text-moderate" />
             </div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-500">Pending</p>
-              <p className="text-2xl font-bold text-slate-900">{stats.pending}</p>
+              <p className="text-sm text-muted-foreground">Today's Orders</p>
+              <p className="text-2xl font-bold text-foreground">{stats.today}</p>
             </div>
-            <div className="w-10 h-10 rounded-lg bg-yellow-100 flex items-center justify-center">
-              <Filter className="h-5 w-5 text-yellow-600" />
+            <div className="w-10 h-10 rounded-lg bg-info-surface flex items-center justify-center">
+              <Calendar className="h-5 w-5 text-info-foreground" />
             </div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-500">Total Revenue</p>
-              <p className="text-2xl font-bold text-slate-900">₹{stats.revenue.toLocaleString()}</p>
+              <p className="text-sm text-muted-foreground">Pending</p>
+              <p className="text-2xl font-bold text-foreground">{stats.pending}</p>
             </div>
-            <div className="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
-              <ShoppingBag className="h-5 w-5 text-emerald-600" />
+            <div className="w-10 h-10 rounded-lg bg-warning-surface flex items-center justify-center">
+              <Filter className="h-5 w-5 text-warning-foreground" />
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4 flex items-center justify-between">
+            <div>
+              <p className="text-sm text-muted-foreground">Total Revenue</p>
+              <p className="text-2xl font-bold text-foreground">₹{stats.revenue.toLocaleString()}</p>
+            </div>
+            <div className="w-10 h-10 rounded-lg bg-success-surface flex items-center justify-center">
+              <ShoppingBag className="h-5 w-5 text-success-foreground" />
             </div>
           </CardContent>
         </Card>
@@ -323,7 +323,7 @@ export default function OrdersPage() {
         <CardContent className="p-4">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Search by order ID, customer name, or roll number..."
                 className="pl-9"
@@ -368,15 +368,15 @@ export default function OrdersPage() {
             <CardTitle>All Orders</CardTitle>
             <CardDescription>Showing {filteredOrders.length} total orders</CardDescription>
           </div>
-          <div className="text-sm text-slate-500">
+          <div className="text-sm text-muted-foreground">
             Page {currentPage} of {totalPages || 1}
           </div>
         </CardHeader>
         <CardContent>
-          <div className="rounded-md border bg-white overflow-hidden">
+          <div className="rounded-md border bg-card overflow-hidden">
             <Table>
               <TableHeader>
-                <TableRow className="bg-slate-100/50">
+                <TableRow className="bg-muted/50">
                   <TableHead>Order ID</TableHead>
                   <TableHead>Customer</TableHead>
                   <TableHead className="hidden md:table-cell">Items</TableHead>
@@ -389,17 +389,17 @@ export default function OrdersPage() {
               <TableBody>
                 {paginatedOrders.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={7} className="text-center py-8 text-slate-500">
+                    <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
                       No orders found matching your filters.
                     </TableCell>
                   </TableRow>
                 ) : (
                   paginatedOrders.map((order) => (
-                    <TableRow key={order.id} className={order.isPos ? 'bg-indigo-50/30' : ''}>
+                    <TableRow key={order.id} className={order.isPos ? 'bg-info-surface/30' : ''}>
                       <TableCell className="font-medium">
                         <div className="flex items-center gap-2">
                           {order.isPos && (
-                            <Badge variant="outline" className="text-[10px] bg-indigo-100 text-indigo-700 border-indigo-200">
+                            <Badge variant="outline" className="text-[10px] bg-info-surface text-info-foreground border-info">
                               POS
                             </Badge>
                           )}
@@ -410,7 +410,7 @@ export default function OrdersPage() {
                         <div>
                           <p className="font-medium">{order.customerName}</p>
                           {!order.isPos && (
-                            <p className="text-xs text-slate-500">{order.rollNumber}</p>
+                            <p className="text-xs text-muted-foreground">{order.rollNumber}</p>
                           )}
                         </div>
                       </TableCell>
@@ -419,7 +419,7 @@ export default function OrdersPage() {
                           {order.items}
                         </span>
                       </TableCell>
-                      <TableCell className="text-sm text-slate-500">
+                      <TableCell className="text-sm text-muted-foreground">
                         {new Date(order.dateTime).toLocaleDateString()}
                         <br />
                         <span className="text-xs">
@@ -480,7 +480,7 @@ export default function OrdersPage() {
           {/* Pagination */}
           {totalPages > 1 && (
             <div className="flex items-center justify-between mt-4">
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-muted-foreground">
                 Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(currentPage * itemsPerPage, filteredOrders.length)} of {filteredOrders.length} orders
               </p>
               <div className="flex items-center gap-2">
@@ -492,7 +492,7 @@ export default function OrdersPage() {
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
-                <span className="text-sm text-slate-600">
+                <span className="text-sm text-text-moderate">
                   Page {currentPage} of {totalPages}
                 </span>
                 <Button
@@ -522,39 +522,39 @@ export default function OrdersPage() {
             <div className="space-y-4 pt-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm text-slate-500">Customer</p>
+                  <p className="text-sm text-muted-foreground">Customer</p>
                   <p className="font-medium">{selectedOrder.customerName}</p>
-                  <p className="text-xs text-slate-500">{selectedOrder.rollNumber}</p>
+                  <p className="text-xs text-muted-foreground">{selectedOrder.rollNumber}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-slate-500">Contact</p>
+                  <p className="text-sm text-muted-foreground">Contact</p>
                   <p className="font-medium">{selectedOrder.contact}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-slate-500">Hostel</p>
+                  <p className="text-sm text-muted-foreground">Hostel</p>
                   <p className="font-medium">{selectedOrder.hostel}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-slate-500">Room</p>
+                  <p className="text-sm text-muted-foreground">Room</p>
                   <p className="font-medium">{selectedOrder.room}</p>
                 </div>
               </div>
 
               <div className="border-t pt-4">
-                <p className="text-sm text-slate-500 mb-2">Items</p>
+                <p className="text-sm text-muted-foreground mb-2">Items</p>
                 <div className="flex flex-wrap gap-2">
                   {selectedOrder.clothes.map((item, i) => (
                     <Badge key={i} variant="secondary">{item}</Badge>
                   ))}
                 </div>
-                <p className="text-sm text-slate-500 mt-2">
+                <p className="text-sm text-muted-foreground mt-2">
                   Total: {selectedOrder.itemCount} items
                 </p>
               </div>
 
               <div className="border-t pt-4 flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-500">Status</p>
+                  <p className="text-sm text-muted-foreground">Status</p>
                   <Select
                     value={selectedOrder.status}
                     onValueChange={(val) => updateOrderStatus(selectedOrder.id, val as Order['status'])}
@@ -577,7 +577,7 @@ export default function OrdersPage() {
                   </Select>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm text-slate-500">Total Amount</p>
+                  <p className="text-sm text-muted-foreground">Total Amount</p>
                   <p className="text-2xl font-bold">₹{selectedOrder.total}</p>
                 </div>
               </div>

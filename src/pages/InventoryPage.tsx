@@ -74,13 +74,13 @@ const INITIAL_INVENTORY: InventoryItem[] = [
 const getStockStatus = (quantity: number, threshold: number): { status: 'adequate' | 'low' | 'critical'; label: string; color: string } => {
   const percentage = (quantity / threshold) * 100;
   if (percentage > 150) {
-    return { status: 'adequate', label: 'Adequate', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' };
+    return { status: 'adequate', label: 'Adequate', color: 'bg-success-surface text-success-foreground border-success' };
   } else if (percentage >= 100) {
-    return { status: 'adequate', label: 'Good', color: 'bg-blue-100 text-blue-700 border-blue-200' };
+    return { status: 'adequate', label: 'Good', color: 'bg-info-surface text-info-foreground border-info' };
   } else if (percentage >= 50) {
-    return { status: 'low', label: 'Low Stock', color: 'bg-amber-100 text-amber-700 border-amber-200' };
+    return { status: 'low', label: 'Low Stock', color: 'bg-warning-surface text-warning-foreground border-warning' };
   } else {
-    return { status: 'critical', label: 'Critical', color: 'bg-rose-100 text-rose-700 border-rose-200' };
+    return { status: 'critical', label: 'Critical', color: 'bg-error-surface text-error-foreground border-error' };
   }
 };
 
@@ -227,8 +227,8 @@ export default function InventoryPage() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Inventory Management</h1>
-          <p className="text-slate-500 mt-1">Track and manage supplies and materials</p>
+          <h1 className="text-3xl font-bold text-foreground">Inventory Management</h1>
+          <p className="text-muted-foreground mt-1">Track and manage supplies and materials</p>
         </div>
         <Button onClick={() => { resetForm(); setIsAddDialogOpen(true); }}>
           <Plus className="h-4 w-4 mr-2" />
@@ -241,44 +241,44 @@ export default function InventoryPage() {
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-500">Total Items</p>
-              <p className="text-2xl font-bold text-slate-900">{stats.total}</p>
+              <p className="text-sm text-muted-foreground">Total Items</p>
+              <p className="text-2xl font-bold text-foreground">{stats.total}</p>
             </div>
-            <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center">
-              <Package className="h-5 w-5 text-slate-600" />
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4 flex items-center justify-between">
-            <div>
-              <p className="text-sm text-slate-500">Adequate Stock</p>
-              <p className="text-2xl font-bold text-emerald-600">{stats.adequate}</p>
-            </div>
-            <div className="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
-              <CheckCircle2 className="h-5 w-5 text-emerald-600" />
+            <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
+              <Package className="h-5 w-5 text-text-moderate" />
             </div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-500">Low Stock Alerts</p>
-              <p className="text-2xl font-bold text-amber-600">{stats.low + stats.critical}</p>
+              <p className="text-sm text-muted-foreground">Adequate Stock</p>
+              <p className="text-2xl font-bold text-success-foreground">{stats.adequate}</p>
             </div>
-            <div className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center">
-              <AlertTriangle className="h-5 w-5 text-amber-600" />
+            <div className="w-10 h-10 rounded-lg bg-success-surface flex items-center justify-center">
+              <CheckCircle2 className="h-5 w-5 text-success-foreground" />
             </div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-500">Inventory Value</p>
-              <p className="text-2xl font-bold text-slate-900">₹{stats.totalValue.toLocaleString()}</p>
+              <p className="text-sm text-muted-foreground">Low Stock Alerts</p>
+              <p className="text-2xl font-bold text-warning-foreground">{stats.low + stats.critical}</p>
             </div>
-            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
-              <Boxes className="h-5 w-5 text-blue-600" />
+            <div className="w-10 h-10 rounded-lg bg-warning-surface flex items-center justify-center">
+              <AlertTriangle className="h-5 w-5 text-warning-foreground" />
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4 flex items-center justify-between">
+            <div>
+              <p className="text-sm text-muted-foreground">Inventory Value</p>
+              <p className="text-2xl font-bold text-foreground">₹{stats.totalValue.toLocaleString()}</p>
+            </div>
+            <div className="w-10 h-10 rounded-lg bg-info-surface flex items-center justify-center">
+              <Boxes className="h-5 w-5 text-info-foreground" />
             </div>
           </CardContent>
         </Card>
@@ -286,11 +286,11 @@ export default function InventoryPage() {
 
       {/* Low Stock Alert */}
       {stats.critical > 0 && (
-        <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 flex items-center gap-3">
-          <AlertTriangle className="h-5 w-5 text-rose-600" />
+        <div className="p-4 rounded-xl bg-error-surface border border-error flex items-center gap-3">
+          <AlertTriangle className="h-5 w-5 text-error-foreground" />
           <div>
-            <p className="font-medium text-rose-900">Critical Stock Alert</p>
-            <p className="text-sm text-rose-600">{stats.critical} item(s) are critically low and need immediate restocking.</p>
+            <p className="font-medium text-error-foreground">Critical Stock Alert</p>
+            <p className="text-sm text-error-foreground">{stats.critical} item(s) are critically low and need immediate restocking.</p>
           </div>
         </div>
       )}
@@ -300,7 +300,7 @@ export default function InventoryPage() {
         <CardContent className="p-4">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Search by item name, supplier, or ID..."
                 className="pl-9"
@@ -344,10 +344,10 @@ export default function InventoryPage() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="rounded-md border bg-white overflow-hidden">
+          <div className="rounded-md border bg-card overflow-hidden">
             <Table>
               <TableHeader>
-                <TableRow className="bg-slate-100/50">
+                <TableRow className="bg-muted/50">
                   <TableHead>Item</TableHead>
                   <TableHead className="hidden md:table-cell">Supplier</TableHead>
                   <TableHead>Category</TableHead>
@@ -360,7 +360,7 @@ export default function InventoryPage() {
               <TableBody>
                 {filteredInventory.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={7} className="text-center py-8 text-slate-500">
+                    <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
                       No items found matching your filters.
                     </TableCell>
                   </TableRow>
@@ -372,13 +372,13 @@ export default function InventoryPage() {
                       <TableRow key={item.id}>
                         <TableCell>
                           <div>
-                            <p className="font-medium text-slate-900">{item.name}</p>
-                            <p className="text-xs text-slate-500 font-mono">{item.id}</p>
+                            <p className="font-medium text-foreground">{item.name}</p>
+                            <p className="text-xs text-muted-foreground font-mono">{item.id}</p>
                           </div>
                         </TableCell>
                         <TableCell className="hidden md:table-cell">
                           <div className="flex items-center gap-2">
-                            <Warehouse className="h-3 w-3 text-slate-400" />
+                            <Warehouse className="h-3 w-3 text-muted-foreground" />
                             <span className="text-sm">{item.supplier}</span>
                           </div>
                         </TableCell>
@@ -415,7 +415,7 @@ export default function InventoryPage() {
                             {status.label}
                           </Badge>
                         </TableCell>
-                        <TableCell className="hidden lg:table-cell text-sm text-slate-500">
+                        <TableCell className="hidden lg:table-cell text-sm text-muted-foreground">
                           {daysSince === 0 ? 'Today' : `${daysSince} days ago`}
                         </TableCell>
                         <TableCell className="text-right">
@@ -431,7 +431,7 @@ export default function InventoryPage() {
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="h-8 w-8 text-rose-500 hover:text-rose-600"
+                              className="h-8 w-8 text-error-foreground hover:text-error-foreground"
                               onClick={() => { setSelectedItem(item); setIsDeleteDialogOpen(true); }}
                             >
                               <Trash2 className="h-4 w-4" />
@@ -646,7 +646,7 @@ export default function InventoryPage() {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel onClick={() => setIsDeleteDialogOpen(false)}>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleDeleteItem} className="bg-rose-600 hover:bg-rose-700">
+            <AlertDialogAction onClick={handleDeleteItem} className="bg-error hover:bg-error">
               Remove
             </AlertDialogAction>
           </AlertDialogFooter>

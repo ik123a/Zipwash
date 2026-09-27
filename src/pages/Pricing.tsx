@@ -160,7 +160,7 @@ export default function Pricing() {
                     variant="outline"
                     size="sm"
                     onClick={handleCancelEdit}
-                    className="border-slate-300"
+                    className="border-border"
                   >
                     <X className="h-4 w-4 mr-2" />
                     Cancel
@@ -209,7 +209,7 @@ export default function Pricing() {
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                 activeTab === category
                   ? 'bg-slate-900 text-white shadow-md'
-                  : 'bg-white text-text-moderate border border-border hover:border-info hover:text-blue-600'
+                  : 'bg-card text-text-moderate border border-border hover:border-info hover:text-info-foreground'
               }`}
             >
               {category}
@@ -248,13 +248,13 @@ export default function Pricing() {
                   className={`group relative flex flex-col items-center justify-center aspect-square p-2 bg-card border border-border rounded-2xl transition-all duration-300 shadow-sm ${
                     isEditMode
                       ? ''
-                      : 'hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 hover:shadow-lg active:scale-95 cursor-pointer'
+                      : 'hover:border-blue-400 hover:bg-gradient-to-br hover:from-info-surface hover:to-info-surface hover:shadow-lg active:scale-95 cursor-pointer'
                   }`}
                 >
-                  <div className="h-12 w-12 rounded-xl bg-muted group-hover:bg-blue-100 flex items-center justify-center mb-3 transition-colors">
-                    <item.icon className="h-6 w-6 text-muted-foreground group-hover:text-blue-600 transition-colors" />
+                  <div className="h-12 w-12 rounded-xl bg-muted group-hover:bg-info-surface flex items-center justify-center mb-3 transition-colors">
+                    <item.icon className="h-6 w-6 text-muted-foreground group-hover:text-info-foreground transition-colors" />
                   </div>
-                  <span className="text-xs font-bold text-center text-foreground group-hover:text-blue-700 transition-colors px-1 whitespace-nowrap overflow-hidden text-ellipsis w-full">
+                  <span className="text-xs font-bold text-center text-foreground group-hover:text-info-foreground transition-colors px-1 whitespace-nowrap overflow-hidden text-ellipsis w-full">
                     {item.name}
                   </span>
 
@@ -267,7 +267,7 @@ export default function Pricing() {
                         value={currentPrice}
                         onChange={(e) => handlePriceChange(item.id, parseInt(e.target.value) || 0)}
                         className={`w-16 h-8 text-center text-sm font-bold ${
-                          isEdited ? 'border-emerald-400 bg-emerald-50' : ''
+                          isEdited ? 'border-success bg-success-surface' : ''
                         }`}
                         onClick={(e) => e.stopPropagation()}
                       />
@@ -310,7 +310,7 @@ export default function Pricing() {
       </div>
 
       {/* Right Sidebar - Order Summary */}
-      <Card className="w-full lg:w-[380px] bg-white/90 backdrop-blur-sm border-l border-border rounded-none lg:rounded-l-3xl shadow-2xl flex flex-col shrink-0 animate-fade-up">
+      <Card className="w-full lg:w-[380px] bg-card/90 backdrop-blur-sm border-l border-border rounded-none lg:rounded-l-3xl shadow-2xl flex flex-col shrink-0 animate-fade-up">
         <CardHeader className="bg-gradient-to-r from-muted to-muted border-b border-border py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -327,7 +327,7 @@ export default function Pricing() {
           {cart.length > 0 ? (
             <div className="divide-y divide-border">
               {cart.map((item) => (
-                <div key={item.id} className="p-4 hover:bg-slate-50/80 transition-colors group">
+                <div key={item.id} className="p-4 hover:bg-background/80 transition-colors group">
                   <div className="flex justify-between items-start mb-2">
                     <div className="flex gap-3">
                       <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-muted to-muted flex items-center justify-center shrink-0">

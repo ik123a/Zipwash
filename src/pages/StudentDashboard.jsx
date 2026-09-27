@@ -82,7 +82,7 @@ export default function StudentDashboard() {
     <div className="flex flex-col gap-6 md:gap-8 max-w-7xl mx-auto w-full animate-fade-up bg-transparent">
       {/* Stats Row - Modern Glass Cards */}
       <div className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-4">
-        <Card className="group bg-gradient-to-br from-slate-50/80 to-slate-100/60 border-slate-200/50 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-default overflow-hidden relative">
+        <Card className="group bg-gradient-to-br from-muted/80 to-muted/60 border-border/50 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-default overflow-hidden relative">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-semibold text-text-moderate dark:text-muted-foreground">Total Submissions</CardTitle>
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-muted-foreground to-muted-foreground flex items-center justify-center shadow-sm shadow-slate-200">
@@ -95,7 +95,7 @@ export default function StudentDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="group bg-gradient-to-br from-emerald-50/80 to-emerald-100/60 border-emerald-200/50 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-default overflow-hidden relative">
+        <Card className="group bg-gradient-to-br from-success-surface/80 to-success-surface/60 border-success/50 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-default overflow-hidden relative">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-semibold text-success-foreground dark:text-success-foreground">Available</CardTitle>
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-success to-success flex items-center justify-center shadow-sm shadow-emerald-200">
@@ -104,11 +104,11 @@ export default function StudentDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold text-success-foreground">{stats.available}</div>
-            <p className="text-xs text-emerald-600/70 mt-1">of {stats.total} machines</p>
+            <p className="text-xs text-success-foreground/70 mt-1">of {stats.total} machines</p>
           </CardContent>
         </Card>
 
-        <Card className="group bg-gradient-to-br from-amber-50/80 to-amber-100/60 border-amber-200/50 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-default overflow-hidden relative">
+        <Card className="group bg-gradient-to-br from-warning-surface/80 to-warning-surface/60 border-warning/50 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-default overflow-hidden relative">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-semibold text-warning-foreground dark:text-warning-foreground">In Use</CardTitle>
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-warning to-warning flex items-center justify-center shadow-sm shadow-amber-200">
@@ -117,11 +117,11 @@ export default function StudentDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold text-warning-foreground">{stats.busy}</div>
-            <p className="text-xs text-amber-600/70 mt-1">Currently running</p>
+            <p className="text-xs text-warning-foreground/70 mt-1">Currently running</p>
           </CardContent>
         </Card>
 
-        <Card className="group bg-gradient-to-br from-rose-50/80 to-rose-100/60 border-rose-200/50 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-default overflow-hidden relative">
+        <Card className="group bg-gradient-to-br from-error-surface/80 to-error-surface/60 border-error/50 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-default overflow-hidden relative">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-semibold text-error-foreground dark:text-error-foreground">Offline</CardTitle>
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-error to-error flex items-center justify-center shadow-sm shadow-rose-200">
@@ -130,7 +130,7 @@ export default function StudentDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold text-error-foreground">{stats.offline}</div>
-            <p className="text-xs text-rose-600/70 mt-1">Maintenance</p>
+            <p className="text-xs text-error-foreground/70 mt-1">Maintenance</p>
           </CardContent>
         </Card>
       </div>
