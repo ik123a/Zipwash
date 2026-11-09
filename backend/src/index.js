@@ -29,30 +29,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-const fs = require('fs');
-
-// Helper to mask sensitive fields in logs
-const maskSensitive = (body) => {
-  if (!body) return body;
-  const sensitive = ['password', 'token', 'secret', 'jwt', 'authorization'];
-  const masked = { ...body };
-  sensitive.forEach(field => {
-    if (masked[field]) masked[field] = '***REDACTED***';
-  });
-  return masked;
-};
-
-app.use((req, res, next) => {
-  const logBody = maskSensitive(req.body);
-  const logStr = `\n[${new Date().toISOString()}] ${req.method} ${req.url}\nBody: ${JSON.stringify(logBody)}\n`;
-  fs.appendFileSync('backend.log', logStr);
-  const originalSend = res.send;
-  res.send = function (body) {
-    fs.appendFileSync('backend.log', `Status: ${res.statusCode} | Response: ${body}\n`);
-    return originalSend.call(this, body);
-  };
-  next();
-});
+const requestLogger = require('./middleware/requestLogger');
+app.use(requestLogger);
 
 // Add rate limiting middleware
 const rateLimit = require('express-rate-limit');
